@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>絵本の森 - 読み聞かせリスト</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 変数定義 --- */
+        :root {
+            --bg-color: #FFF5E4; /* パステルクリーム */
+            --primary-color: #FFD1D1; /* パステルピンク */
+            --secondary-color: #E6E6FA; /* ラベンダー */
+            --accent-color: #D4F1F4; /* ライトブルー */
+            --text-color: #5C5470; /* 落ち着いた紫がかったグレー */
+            --glass-bg: rgba(255, 255, 255, 0.55);
+            --border-color: rgba(255, 255, 255, 0.4);
+            --shadow-color: rgba(100, 100, 150, 0.15);
+            /* 明るいグラデーション用の新色 */
+            --hero-bg-start-bright: #A9F1DF; /* 明るいミント */
+            --hero-bg-end-bright: #FFBBBB; /* 明るいコーラル */
+            /* フッター用の配色をprimary-color（ピンク）に設定 */
+            --footer-bg-color: var(--primary-color);
+        }
+
+        /* --- 基本スタイル --- */
+        body {
+            font-family: "Josefin Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* --- ヘッダー --- */
+        .hero-header {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--hero-bg-start-bright), var(--hero-bg-end-bright));
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- タイトルテキストアニメーション --- */
+        .hero-header h1 {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 4.5rem;
+            margin: 0;
+            font-weight: 200; 
+            text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+        .hero-header h1 .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(-40px) scale(1.2);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
+        }
+        .hero-header p {
+            font-size: 1.4rem;
+            font-family: 'Noto Sans JP', sans-serif;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- 幾何学模様アニメーション --- */
+        .bg-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .bg-shapes div {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            animation: float 20s infinite linear;
+        }
+        .bg-shapes .shape1 { width: 40px; height: 40px; left: 15%; bottom: -40px; animation-duration: 22s; }
+        .bg-shapes .shape2 { width: 80px; height: 80px; left: 40%; bottom: -80px; animation-duration: 18s; animation-delay: 3s; }
+        .bg-shapes .shape3 { width: 20px; height: 20px; left: 75%; bottom: -20px; animation-duration: 15s; }
+        .bg-shapes .shape4 { width: 120px; height: 120px; left: 90%; bottom: -120px; animation-duration: 25s; animation-delay: 5s;}
+        .bg-shapes .shape5 { width: 50px; height: 50px; left: 5%; bottom: -50px; animation-duration: 20s; animation-delay: 8s;}
+        .bg-shapes .shape6 { width: 30px; height: 30px; left: 60%; bottom: -30px; animation-duration: 16s; animation-delay: 2s;}
+
+        @keyframes float {
+            from { transform: translateY(0) rotate(0deg); }
+            to { transform: translateY(-120vh) rotate(360deg); }
+        }
+
+        /* --- メインコンテンツ --- */
+        .main-content {
+            background: linear-gradient(to bottom, var(--bg-color), var(--secondary-color));
+            /* 下部のパディングを増やしてフッターとの重なりを回避 */
+            padding: 4rem 2rem 18rem;
+        }
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- グラスモーフィズムカード --- */
+        .book-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            text-align: left;
+            box-shadow: 0 8px 32px 0 var(--shadow-color);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .book-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 40px 0 var(--shadow-color);
+        }
+        .card-header h3 {
+            margin: 0 0 0.5rem 0;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+        .card-header .author {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        .card-body p {
+            font-size: 0.95rem;
+            margin: 0;
+            height: 110px;
+            overflow: auto;
+        }
+        .card-footer {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        .book-id {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        /* --- フッターと波形アニメーション --- */
+        .footer-wrapper {
+            position: relative;
+            background-color: var(--footer-bg-color);
+        }
+        .waves-container {
+            width: 100%;
+            height: 15vh;
+            min-height: 100px;
+            max-height: 150px;
+            position: relative;
+            /* mainコンテンツのグラデーション終点色と同じにすることで、継ぎ目をなくす */
+            background-color: var(--secondary-color);
+        }
+        .waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+        .parallax > use {
+            animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+        }
+        .parallax > use:nth-child(1) {
+            animation-delay: -2s;
+            animation-duration: 7s;
+        }
+        .parallax > use:nth-child(2) {
+            animation-delay: -3s;
+            animation-duration: 10s;
+        }
+        .parallax > use:nth-child(3) {
+            animation-delay: -4s;
+            animation-duration: 13s;
+        }
+        .parallax > use:nth-child(4) {
+            animation-delay: -5s;
+            animation-duration: 20s;
+            /* 波の最下層の色をフッターの背景色に合わせる */
+            fill: var(--footer-bg-color);
+        }
+        @keyframes move-forever {
+            0% { transform: translate3d(-90px,0,0); }
+            100% { transform: translate3d(85px,0,0); }
+        }
+        .footer {
+            padding: 2rem;
+            text-align: center;
+            background-color: var(--footer-bg-color);
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+        .footer p {
+            margin: 0;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 200;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-header">
+        <div class="bg-shapes">
+            <div class="shape1"></div><div class="shape2"></div><div class="shape3"></div>
+            <div class="shape4"></div><div class="shape5"></div><div class="shape6"></div>
+        </div>
+        <h1 id="animated-title">絵本の森</h1>
+        <p>心に残る読み聞かせ絵本リスト</p>
+    </header>
+
+    <main class="main-content">
+        <p class="intro-text">
+            ここに掲載しているのは、読み聞かせにおすすめの素敵な絵本たちです。<br>
+            それぞれのカードに、物語の簡単な紹介をまとめました。気になる一冊を見つけてみてください。
+        </p>
+        <div class="book-grid" id="book-grid">
+            <!-- JavaScriptでカードがここに追加されます -->
+        </div>
+    </main>
+    
+    <div class="footer-wrapper">
+        <div class="waves-container">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <!-- 波の色をフッターのテーマカラー（ピンク）の濃淡に変更 -->
+                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255, 209, 209, 0.7)" />
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255, 209, 209, 0.5)" />
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255, 209, 209, 0.3)" />
+                    <use xlink:href="#gentle-wave" x="48" y="7" />
+                </g>
+            </svg>
+        </div>
+        <footer class="footer">
+            <p>&copy; 2025 Picture Book Materials for Child Care</p>
+        </footer>
+    </div>
+
+
+    <script>
+        // --- タイトルテキストアニメーションの実行 ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const title = document.getElementById('animated-title');
+            const text = title.textContent;
+            title.innerHTML = ''; 
+
+            text.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.textContent = char;
+                span.style.transitionDelay = `${index * 0.05}s`;
+                title.appendChild(span);
+            });
+
+            setTimeout(() => {
+                const spans = document.querySelectorAll('#animated-title .char');
+                spans.forEach(span => {
+                    span.style.opacity = '1';
+                    span.style.transform = 'translateY(0) scale(1)';
+                });
+            }, 100);
+        });
+
+        // --- 全絵本データ ---
+        const allBookData = [
+            { id: 506677, title: "あさになったので まどをあけますよ", author: "荒井 良二 / 著", publisher: "偕成社", year: 2011.12, summary: "山、町、家、それぞれの人々が朝を迎えて窓を開ける。その繰り返される日常の営みの中に、新しい一日への希望と再生の願いが込められた、心温まる絵本です。" },
+            { id: 506397, title: "へんしんトンネル", author: "あきやま ただし / 作・絵", publisher: "金の星社", year: 2002.9, summary: "かっぱ、かっぱ、かっぱ…と唱えながら通ると「ぱっか、ぱっか」と馬になって出てくる不思議なトンネル。言葉遊びの楽しさがいっぱいの絵本です。" },
+            { id: 515740, title: "ねたふりゆうちゃん", author: "阿部 結 / 著", publisher: "白泉社", year: 2021.3, summary: "お母さんに甘えたいゆうちゃんが、家のあちこちで寝たふり。親子の愛情あふれるやりとりが、愛らしくユーモラスに描かれています。" },
+            { id: 512910, title: "おたすけトゥース", author: "いしい ひろし / 著", publisher: "白泉社", year: 2019.4, summary: "困っている子がいると「おたすけトゥース！」と現れる正義の味方。歯磨きや着替えなど、子どもの「できない」に寄り添い、応援してくれる絵本です。" },
+            { id: 510633, title: "ちっちゃいさん", author: "イソール / 作、宇野 和美 / 訳", publisher: "講談社", year: 2016.4, summary: "ある朝、男の子が自分より「ちっちゃいさん」をみつける。ちっちゃいさんがいることで男の子が成長していく姿を通して、兄弟関係や心の成長を描きます。" },
+            { id: 508592, title: "ペルナルさんのぼうし", author: "いまい あやの / 作", publisher: "BL出版", year: 2014.2, summary: "物知りのペルナルさんが大切にしている帽子が風に飛ばされてしまう。動物たちが協力して帽子を探す冒険が、美しいイラストで描かれます。" },
+            { id: 508786, title: "ことりのくるひ", author: "岩崎 ちひろ / 絵と文", publisher: "至光社", year: 1980, summary: "窓の外にやってきた小鳥との静かで優しい心の交流を、岩崎ちひろの繊細なタッチで描いた、詩情あふれる一冊です。" },
+            { id: 018780, title: "もりのなか", author: "いわむら かずお / 作", publisher: "至光社", year: 1988, summary: "森の動物たちの生活を、美しい言葉と細やかな絵で描いたロングセラー。自然の営みや命のつながりを静かに伝えます。" },
+            { id: 506493, title: "空の絵本", author: "長田 弘 / 作、荒井 良二 / 絵", publisher: "講談社", year: 2011.10, summary: "「空はみんなのもの」というメッセージを、詩的な言葉と伸びやかな絵で表現。空を見上げる楽しさ、世界の広さを感じさせてくれます。" },
+            { id: 503961, title: "つみきのいえ", author: "加藤 久仁生 / 絵、平田 研也 / 文", publisher: "白泉社", year: 2008.10, summary: "海面が上昇するたびに上に家を建て増していくおじいさん。ある日、落としたパイプを探しに潜ると、家族との思い出が蘇る。静かで感動的な物語。" },
+            { id: 505786, title: "おもちのきもち", author: "かがくい ひろし / 作・絵", publisher: "講談社", year: 2005.12, summary: "鏡餅の気持ちになって、飾られている間の退屈さや、食べられることへの期待と不安をユーモラスに描いた、お正月にぴったりの絵本。" },
+            { id: 506202, title: "しゃっくりがいこつ", author: "マージェリー・カイラー / 作", publisher: "セーラー出版", year: 2004.10, summary: "真夜中にしゃっくりが止まらなくなったがいこつ。驚かそうと追いかける男の子との、怖くておかしい追いかけっこが繰り広げられます。" },
+            { id: 505794, title: "はらぺこあおむし", author: "エリック＝カール / 作、もり ひさし / 訳", publisher: "偕成社", year: 1989, summary: "生まれたてのあおむしが、たくさん食べて成長し、美しい蝶になるまでを描く。鮮やかな色彩と仕掛けが楽しい、世界中で愛される名作です。" },
+            { id: 509784, title: "ちいさなにわ", author: "さくらせかい / 作", publisher: "学研教育出版", year: 2014.9, summary: "" },
+            { id: 506483, title: "いつでも会える", author: "菊田 まりこ / 作", publisher: "学研", year: 2007.2, summary: "大好きな飼い主を亡くした犬のシロが、悲しみを乗り越えていく姿を描く。目には見えなくても心は繋がっているという、温かいメッセージが込められた絵本。" },
+            { id: 505784, title: "ゆうちゃんとけいかちゃん", author: "くろだ かおる / 作、せな けいこ / 絵", publisher: "ひかりのくに", year: 1997.6, summary: "" },
+            { id: 509020, title: "ちがうねん", author: "ジョン・クラッセン / 作、長谷川 義史 / 訳", publisher: "クレヨンハウス", year: 2012.11, summary: "小さな魚が大きな魚から帽子を盗み、「これは僕のじゃない」と言い訳を続ける。ユーモラスな展開と、想像を掻き立てる結末が魅力です。" },
+            { id: 505789, title: "はなをくんくん", author: "ルース・クラウス / 文、マーク・シーモント / 絵", publisher: "福音館書店", year: 1967.3, summary: "冬眠から覚めた動物たちが、春の匂いを追って「くんくん」。春の訪れの喜びが、愛らしい絵とリズミカルな言葉で表現されています。" },
+            { id: 508254, title: "きもち", author: "ジャナン・ケイン / 作、いしい むつみ / 訳", publisher: "少年写真新聞社", year: 2013.9, summary: "嬉しい、悲しい、怒っている...。様々な「きもち」をモンスターの表情で豊かに表現。自分の感情を理解し、言葉にする手助けになります。" },
+            { id: 514088, title: "ゆめぎんこう", author: "コンドウアキ / 著", publisher: "白泉社", year: 2020.10, summary: "見た夢を預かってくれる「ゆめぎんこう」。良い夢は誰かに貸し出され、悪い夢は食べてくれる。夢をめぐる不思議で心温まるお話です。" },
+            { id: 515826, title: "はるとあき", author: "斉藤 倫 / 作、うきまる / 絵、吉田 尚令 / 絵", publisher: "小学館", year: 2019.5, summary: "「はる」と「あき」という二人の子どもの姿を通して、季節の移ろいや自然のサイクルを詩的に描いた、美しくも少し切ない物語。" },
+            { id: 502003, title: "100万回生きたねこ", author: "佐野 洋子 / 作・絵", publisher: "講談社", year: 1977.10, summary: "自分が大好きで、誰のことも愛さなかったねこ。初めて愛する存在と出会い、そして失うことで、本当の生と死を経験する、深く哲学的な物語。" },
+            { id: 515176, title: "まないたにりょうりをあげないこと", author: "シゲタ サヤカ / 作", publisher: "講談社", year: 2009.8, summary: "料理が嫌いなまないたが、上に乗せられた食材をことごとく拒否！奇想天外な展開とユーモアが爆発する、笑いの絶えない一冊です。" },
+            { id: 517340, title: "ラッキーカレー", author: "シゲタサヤカ / 作", publisher: "小学館", year: 2022.11, summary: "ラッキーになりたい動物たちが、ラッキーな具材ばかりを集めてカレーを作るお話。想像力豊かでナンセンスな展開が楽しい絵本です。" },
+            { id: 506553, title: "ぞうのこどもがみたゆめ", author: "吉田 景一 / 作、柴崎 るり子 / 絵", publisher: "Kiba Book", year: 2001.2, summary: "動物園のぞうの子どもが見る、故郷アフリカの夢。夢を通して、家族や仲間との絆、自然への憧れを描いた、優しくも切ない物語。" },
+            { id: 507849, title: "ねつでやすんでいるキミへ", author: "しおり あかり / 著", publisher: "岩崎書店", year: 2013.4, summary: "熱を出して寝込んでいる子どもに寄り添い、励ましの言葉をかける絵本。不安な気持ちを和らげ、元気が出るような優しいメッセージが詰まっています。" },
+            { id: 502739, title: "もったいないばあさん", author: "真珠 まりこ / 作・絵", publisher: "講談社", year: 2004.10, summary: "「もったいない」が口癖のばあさんが、食べ残しや無駄遣いを戒める。物を大切にする心を、楽しく、そして分かりやすく教えてくれます。" },
+            { id: 508614, title: "イカになあれ", author: "真珠 まりこ / 作", publisher: "講談社", year: 2014.3, summary: "男の子が「イカになあれ」と唱えると、本当にイカになって海の世界へ！ユーモラスな展開と、イカの生態も少し学べる楽しい絵本です。" },
+            { id: 502490, title: "だめよ、デイビッド！", author: "デイビッド・シャノン / 作、小川 仁央 / 訳", publisher: "評論社", year: 2001.4, summary: "家中を散らかし、いたずらばかりするデイビッドに、ママは「だめよ！」と叱ってばかり。でも最後には、どんなに叱られても変わらない親子の愛情が描かれています。" },
+            { id: 510634, title: "とんでもない", author: "鈴木 のりたけ / 作・絵", publisher: "アリス館", year: 2016.2, summary: "「きみ、頭にヘビがのってるよ」「とんでもない！これはネクタイさ」といったように、常識を覆すユニークな発想が次々と飛び出す、想像力を刺激する絵本です。" },
+            { id: 504000, title: "ブラッキンダー", author: "スズキ コージ / 作・絵", publisher: "イースト・プレス", year: 2008.8, summary: "不思議な呪文とともに現れる怪物ブラッキンダー。圧倒的なエネルギーと色彩で描かれる、スズキコージの世界観が炸裂するアートな一冊です。" },
+            { id: 513529, title: "そらとぶクレヨン", author: "竹下 文子 / 文、鈴木 まもる / 絵", publisher: "金の星社", year: 2006.3, summary: "女の子のクレヨンたちが、自分たちで絵を描き始め、空を飛ぶ冒険に出かけるお話。クレヨンたちの生き生きとした活躍が魅力です。" },
+            { id: 515145, title: "バナナじけん", author: "高畠 那生 / 作", publisher: "BL出版", year: 2012.12, summary: "サルがバナナの皮で滑って転んだことから始まる、奇想天外な連鎖反応。次々と起こる「じけん」がユーモラスに描かれるナンセンス絵本です。" },
+            { id: 514330, title: "うそ", author: "谷川 俊太郎 / 詩、中島 信一 / 絵", publisher: "主婦の友社", year: 2021.4, summary: "「うそ」というテーマを、谷川俊太郎の詩的な言葉で深く掘り下げます。子どものつく嘘から、大人の社会にはびこる嘘まで、様々な嘘の形を問いかけます。" },
+            { id: 513528, title: "つまんない つまんない", author: "竹下 文子 / 文、鈴木 まもる / 絵", publisher: "金の星社", year: 2005.1, summary: "「つまんない」と感じたとき、人はどんなことを考える？退屈な時間から生まれる無限の空想の世界を、ヨシタケシンスケならではの視点で描きます。（※ヨシタケシンスケ作の同名絵本とは別作品）" },
+            { id: 508333, title: "しろくまのパンツ", author: "tupera tupera / 作", publisher: "ブロンズ新社", year: 2012.9, summary: "パンツをなくしてしまったしろくまくん。ねずみさんと一緒にパンツを探すうちに、しましま模様や水玉模様など、いろんなパンツが登場する楽しい探し絵本です。" },
+            { id: 515682, title: "ホットチョコレート-Hot chocolate for you", author: "刀根 里衣 / 著", publisher: "NHK出版", year: 2022.11, summary: "" },
+            { id: 505781, title: "おおかきなカブ ロシア民話", author: "A. トルストイ / 再話、内田 莉莎子 / 訳", publisher: "福音館書店", year: 1995, summary: "おじいさんが植えたカブが、とてつもなく大きく育ちます。おじいさん、おばあさん、孫、犬、猫、ねずみと、みんなで力を合わせてカブを抜こうとする有名なロシア民話です。" },
+            { id: 513779, title: "りんごがたべたいねずみくん", author: "なかえ よしを / 作、上野 紀子 / 絵", publisher: "ポプラ社", year: 1999.9, summary: "木の上にあるりんごが食べたいねずみくん。友達の動物たちが協力しようとしますが、なかなかうまくいきません。シンプルな繰り返しが楽しい人気シリーズの一冊。" },
+            { id: 513780, title: "ねみちゃんとねずみくん", author: "なかえ よしを / 作、上野 紀子 / 絵", publisher: "ポプラ社", year: 1976.11, summary: "ねずみくんと、ガールフレンドのねみちゃんの心温まる交流を描くシリーズの一冊。二人の可愛らしいやりとりが魅力です。" },
+            { id: 513781, title: "ねずみくんのプレゼント", author: "なかえ よしを / 作、上野 紀子 / 絵", publisher: "ポプラ社", year: 2004.7, summary: "ねみちゃんへのプレゼントに悩むねずみくん。友達に相談すると、みんな自分と同じものを薦めます。友情と個性の違いがユーモラスに描かれます。" },
+            { id: 513782, title: "どうしちゃったの？ねずみくん", author: "なかえ よしを / 作、上野 紀子 / 絵", publisher: "ポプラ社", year: 2010.5, summary: "いつもと様子の違うねずみくんを、みんなが心配します。実はねずみくんは...。友達を思いやる気持ちの大切さを伝える物語。" },
+            { id: 506813, title: "ドングリ・ドングラ ドングリのうちはなし", author: "中川 淳 / 作", publisher: "水声社", year: 2012.6, summary: "" },
+            { id: 509925, title: "はなちゃんおみそしる", author: "中川 ひろたか / 文、長新 太 / 絵", publisher: "主婦の友社", year: 2015.6, summary: "若くして亡くなった母親が、5歳の娘に遺した「みそ汁の作り方」。食を通して命と家族の絆を伝える、実話をもとにした感動の物語。（※絵本版）" },
+            { id: 500654, title: "おたすけこびと - Who Made This Cake?", author: "なかがわ ちひろ / 文、コヨセ・ジュンジ / 絵", publisher: "徳間書店", year: 2007.2, summary: "夜中、誰も見ていない間に、小さなこびとたちが現れて、散らかったおもちゃを片付けたり、壊れたものを直したりしてくれます。ファンタジックで心温まるお話。" },
+            { id: 515385, title: "ぐりとぐらのかいすいよく", author: "中川 李枝子 / 作、山脇 百合子 / 絵", publisher: "福音館書店", year: 2012.7, summary: "海辺で遊んでいたぐりとぐらは、うみぼうずから手紙の入った瓶を見つけます。うみぼうずを助けたお礼に、様々な楽しい泳ぎ方を教えてもらう夏の大冒険物語。" },
+            { id: 013510, title: "どんなかんじかなあ", author: "中山 千夏 / ぶん、和田 誠 / 絵", publisher: "自由国民社", year: 2005.7, summary: "「嬉しいってどんな感じ？」「悲しいってどんな感じ？」と、様々な感情を子どもに問いかける絵本。自分の気持ちを言葉にする手助けをします。" },
+            { id: 513785, title: "じゃがいもポテトくん", author: "長谷川 義史 / 作・絵", publisher: "小学館", year: 2010.7, summary: "畑で生まれたじゃがいもたちが、様々な料理に変身して活躍する様子を、関西弁の軽快なリズムで描く、楽しくておいしそうな絵本です。" },
+            { id: 503334, title: "ぼくがラーメンたべてるとき", author: "長谷川 義史 / 作・絵", publisher: "教育画劇", year: 2007.7, summary: "男の子がラーメンを食べている、その同じ瞬間に、世界のどこかでは戦争が起きている。日常のすぐ隣にある非日常を対比させ、平和の尊さを力強く訴えかけます。" },
+            { id: 513786, title: "いいから いいから 1", author: "長谷川 義史 / 作", publisher: "絵本館", year: 2006.10, summary: "おじいちゃんの口癖は「いいから いいから」。雷様が来ても、泥棒が入っても、おおらかに受け入れてしまう。寛容な心とユーモアが満載の絵本。" },
+            { id: 508282, title: "うさぎねこ", author: "蜂飼 耳 / ぶん、牧野 千穂 / 絵", publisher: "ブロンズ新社", year: 2011.7, summary: "うさぎでもなく、ねこでもない「うさぎねこ」。自分は何者なのかを探す旅を通して、アイデンティティや他者との違いを優しく描きます。" },
+            { id: 506205, title: "くろねこかあさん", author: "東 君平 / 作", publisher: "福音館書店", year: 1990.1, summary: "母さん黒猫が、たくさんの子猫たちを愛情いっぱいに育てる日常を描く。シンプルな絵と言葉の中に、母と子の深い絆が感じられる温かい一冊。" },
+            { id: 512639, title: "ねずみさんのふゆじたく", author: "キャスリン・ビーチャー / 文", publisher: "徳間書店", year: 2018.11, summary: "" },
+            { id: 503512, title: "ボールのまじゅつしウィリー", author: "アンソニー・ブラウン / 作、久山 太市 / 訳", publisher: "評論社", year: 1998.1, summary: "サッカーが下手で仲間に入れてもらえないウィリーが、不思議な靴を手に入れて名選手になる。自信を持つことの大切さを教えてくれる物語。" },
+            { id: 503316, title: "しずかに！ここはえほんのよみものです", author: "ドン・フリーマン / 作、なかがわ ちひろ / 訳", publisher: "BL出版", year: 2008.4, summary: "図書館を舞台に、人間や動物たちが静かに本を読むことの楽しさを描きます。本を読むことの素晴らしさを伝える、心安らぐ一冊。" },
+            { id: 510416, title: "ちいさなちいさなおばあちゃん", author: "エルサ・ベスコフ / 作、いしい としこ / 訳", publisher: "偕成社", year: 2001.9, summary: "森の奥で暮らす、とても小さな素敵なおばあちゃん。彼女の丁寧な暮らしや動物たちとの交流を、北欧の美しい自然とともに描きます。" },
+            { id: 508987, title: "しろいうさぎとくろいうさぎ", author: "ガース・ウィリアムズ / 作・絵", publisher: "福音館書店", year: 2000.1, summary: "" },
+            { id: 509241, title: "もりはいいところ おじいちゃんのパンこうば", author: "室井 滋 / 文、長谷川 義史 / 絵", publisher: "写真文化首都北海道「写真の町」東川町", year: 2014.10, summary: "森の中にあるパン工場で働くおじいちゃんと、孫の交流を描く。自然の恵みや働くことの喜びが、温かい文章と写真で綴られます。" },
+            { id: 512807, title: "でこぼこホットケーキ", author: "よしだ あつこ / 作、川副 圭子 / 絵", publisher: "世界文化社", year: 2019.2, summary: "形が不格好でも、愛情がこもっていれば最高においしい！見た目ではなく、心のこもったものが一番だというメッセージを、ユーモラスに伝えます。" },
+            { id: 505787, title: "てぶくろ ウクライナ民話", author: "エウゲーニー・M・ラチョフ / 絵、うちだ りさこ / 訳", publisher: "福音館書店", year: 1965.11, summary: "おじいさんが森で落とした片方の手袋に、ねずみ、かえる、うさぎ、きつね...と次々に動物たちが入り込んで住み着くウクライナ民話。" },
+            { id: 506191, title: "コウモリとしょかんへいく", author: "ブライアン・リーズ / 作、さいごう ようこ / 訳", publisher: "徳間書店", year: 2011.8, summary: "夜行性のコウモリが、開館時間を過ぎた図書館に忍び込み、読書の楽しさを満喫する。本が好きになるきっかけをくれるファンタジックな物語。" },
+            { id: 505804, title: "いっしょならもっといい", author: "ルイス・スロボドキン / 作、木坂 涼 / 訳", publisher: "偕成社", year: 2011.2, summary: "一人でいるよりも、誰かと「いっしょ」にいることの楽しさや温かさを描く。シンプルな言葉と絵で、友情の大切さを伝えます。" },
+            { id: 507893, title: "あおくんときいろちゃん", author: "レオ＝レオニ / 作、藤田 圭雄 / 訳", publisher: "至光社", year: 1979, summary: "青色の「あおくん」と黄色の「きいろちゃん」。二人が抱き合うと緑色になり、親たちに見分けられなくなってしまう。色の混ざり合いを通して、友情や個性を描いた名作。" },
+            { id: 007590, title: "ひとまねこざるさるのジョージ", author: "エッチ・エイ・レイ / 文、光吉 夏弥 / 訳", publisher: "岩波書店", year: 1973, summary: "" },
+            { id: 007591, title: "ろばの子だまってなさい", author: "エッチ・エイ・レイ / 文、光吉 夏弥 / 訳", publisher: "岩波書店", year: 1973, summary: "言うことを聞かないろばの子。様々な動物の鳴き声を真似してばかりで、自分の鳴き方を忘れてしまう。自分らしさを見つける物語。" },
+            { id: 007592, title: "たこをあげるひとまねこざる", author: "マーガレット・レイ / 文、エッチ・エイ・レイ / 絵", publisher: "岩波書店", year: 1973, summary: "" },
+            { id: 512561, title: "ぜったいにおしちゃダメ？", author: "ビル・コッター / 作", publisher: "サンクチュアリ出版", year: 2017.9, summary: "「このボタン、ぜったいにおしちゃダメ？」と読者に語りかけてくる参加型絵本。押したくなる気持ちをくすぐられ、親子で盛り上がること間違いなし。" },
+            { id: 503025, title: "ラチとらいおん", author: "マレーク・ベロニカ / 文・絵、とくなが やすとも / 訳", publisher: "福音館書店", year: 1965.7, summary: "世界一弱虫のラチのところに、小さな赤いライオンが現れる。ライオンとの交流を通して、ラチが少しずつ勇気を出していく物語。" },
+            { id: 503019, title: "ぐりとぐら", author: "中川 李枝子 / 作、大村 百合子 / 絵", publisher: "福音館書店", year: 1967.4, summary: "野ねずみのぐりとぐらが森で見つけた大きなたまごで、大きなカステラを作るお話。分かち合うことの喜びを描いた、誰もが知る不朽の名作。" },
+            { id: 504341, title: "うさこちゃんとどうぶつえん", author: "ディック・ブルーナ / 文・絵、まつおか きょうこ / 訳", publisher: "福音館書店", year: 2009.4, summary: "ミッフィー（うさこちゃん）がお父さんと動物園に行くお話。キリンやペンギンなど、様々な動物との出会いをシンプルで愛らしい絵で描きます。" },
+            { id: 506505, title: "たったひとつのねがいごと", author: "バーバラ・マクリントック / 作、福本 友美子 / 訳", publisher: "ほるぷ出版", year: 2011.11, summary: "" },
+            { id: 509753, title: "はじめてのおつかい", author: "筒井 頼子 / 作、林 明子 / 絵", publisher: "福音館書店", year: 2012.4, summary: "5歳のみいちゃんが、お母さんに頼まれて初めて一人でおつかいに行くドキドキの体験を、子どもの視点から丁寧に描いたロングセラー。" },
+            { id: 511159, title: "かいじゅうたちのいるところ", author: "モーリス・センダック / 作、じんぐう てるお / 訳", publisher: "冨山房", year: 1975.12, summary: "いたずらをして夕食抜きで部屋に入れられたマックス。すると部屋が森になり、航海の末にたどり着いたのはかいじゅうの国。そこで王様になりますが、やがて寂しくなり家へ帰ると、温かい夕食が待っていました。" },
+            { id: 508354, title: "きみはほんとうにステキだね", author: "宮西 達也 / 作・絵", publisher: "ポプラ社", year: 2004.9, summary: "ティラノサウルスシリーズの一冊。乱暴でひとりぼっちだったティラノサウルスが、他の恐竜との交流を通して、優しさや思いやりを知る感動の物語。" },
+            { id: 505354, title: "いちばんあいされてるのはぼく", author: "宮西 達也 / 作・絵", publisher: "ポプラ社", year: 2010.9, summary: "" },
+            { id: 509924, title: "スイミー ちいさなかしこいさかなのはなし", author: "レオ＝レオニ / 作、谷川 俊太郎 / 訳", publisher: "好学社", year: 2010.11, summary: "大きな魚に仲間を食べられてしまった小さな黒い魚スイミー。残った仲間たちと協力し、大きな魚のふりをして海を泳ぐ、知恵と勇気の物語。" },
+            { id: 508945, title: "英語でもよめるスイミー", author: "レオ＝レオニ / 作、谷川 俊太郎 / 訳", publisher: "好学社", year: 2013.6, summary: "名作「スイミー」を、日本語と英語の両方で楽しめるバイリンガル版。英語の美しい響きと共に、物語を新たな形で味わえます。" },
+            { id: 508355, title: "ぐりとぐら", author: "中川 李枝子 / 作、大村 百合子 / 絵", publisher: "福音館書店", year: 2007.4, summary: "野ねずみのぐりとぐらが森で見つけた大きなたまごで、大きなカステラを作るお話。分かち合うことの喜びを描いた、誰もが知る不朽の名作。" },
+            { id: 513778, title: "ねずみくんのチョッキ", author: "なかえ よしを / 作、上野 紀子 / 絵", publisher: "ポプラ社", year: 2000.2, summary: "お母さんが編んでくれた赤いチョッキを、動物の友達に「ちょっときせてよ」と貸していくうちに、どんどん伸びてしまいます。物を大切にする心や、優しさを学べるロングセラー絵本です。" },
+            { id: 515173, title: "こんとあき", author: "林 明子 / 作", publisher: "福音館書店", year: 1989.6, summary: "女の子あきと、おばあちゃんが作ったキツネのぬいぐるみ「こん」。腕がほころびてしまったこんを治してもらうため、二人で一緒に冒険の旅に出ます。" },
+            { id: 506678, title: "よるくま", author: "酒井 駒子 / 作・絵", publisher: "偕成社", year: 1999.10, summary: "夜、男の子のところに「よるくま」がやってきて、自分のお母さんを探すのを手伝ってほしいと頼みます。夜の闇の不安と、母の温かさを描いた物語。" },
+            { id: 505767, title: "こびとのくつや", author: "グリム / 原作、いもと ようこ / 文・絵", publisher: "金の星社", year: 2006.10, summary: "貧しい靴屋さんのために、夜中のうちに小人たちが素晴らしい靴を作ってくれるグリム童話。親切への恩返しの心を描いた、心温まるお話です。" },
+            { id: 516820, title: "おんなじおんなじ", author: "大塚 健太 / 作、くさか みなこ / 絵", publisher: "講談社", year: 2024.6, summary: "" },
+            { id: 513998, title: "ようちえん", author: "ディック・ブルーナ / 文・絵、いしい ももこ / 訳", publisher: "福音館書店", year: 2010.4, summary: "ミッフィー（うさこちゃん）が初めて幼稚園に行く日のお話。新しい環境への期待と少しの不安を、温かく描きます。" },
+            { id: 518767, title: "ちっちゃなミッケ！", author: "大塚 健太 / 作、さかい みな / 絵", publisher: "福音館書店", year: 2020.6, summary: "" },
+            { id: 509850, title: "じぶんだけのいろ", author: "レオ＝レオニ / 作、谷川 俊太郎 / 訳", publisher: "好学社", year: 1980.6, summary: "" }
+        ];
+
+        // --- データ結合とカード生成 ---
+        const bookGrid = document.getElementById('book-grid');
+
+        const formatYearMonth = (year) => {
+            if (typeof year !== 'number' && typeof year !== 'string') return '';
+            const yearStr = String(year);
+            if (yearStr.includes('.')) {
+                const parts = yearStr.split('.');
+                const month = parseInt(parts[1], 10) || parseInt(parts[1].substring(0,1), 10);
+                if (month === 0) return `${parts[0]}年`;
+                return `${parts[0]}年${month}月`;
+            }
+            return `${yearStr}年`;
+        };
+
+        allBookData.forEach(book => {
+            const card = document.createElement('div');
+            card.className = 'book-card';
+            card.innerHTML = `
+                <div class="card-header">
+                    <h3>${book.title}</h3>
+                    <div class="author">${book.author}</div>
+                </div>
+                <div class="card-body">
+                    <p>${book.summary || '（あらすじ準備中）'}</p>
+                </div>
+                <div class="card-footer">
+                    <span>${book.publisher}</span>
+                    <span class="book-id">#${book.id}</span>
+                    <span>${formatYearMonth(book.year)}</span>
+                </div>
+            `;
+            bookGrid.appendChild(card);
+        });
+
+        // --- スクロールアニメーション効果 ---
+        const cards = document.querySelectorAll('.book-card');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('is-visible');
+                    }, 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        cards.forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
