@@ -21,8 +21,8 @@
             /* 明るいグラデーション用の新色 */
             --hero-bg-start-bright: #A9F1DF; /* 明るいミント */
             --hero-bg-end-bright: #FFBBBB; /* 明るいコーラル */
-            /* フッター用の配色をprimary-color（ピンク）に設定 */
-            --footer-bg-color: var(--primary-color);
+            /* フッター用の配色をsecondary-color（ラベンダー）に設定 */
+            --footer-bg-color: var(--secondary-color);
         }
 
         /* --- 基本スタイル --- */
@@ -50,21 +50,23 @@
             font-family: 'Josefin Sans', sans-serif;
             font-size: 4.5rem;
             margin: 0;
-            font-weight: 200; 
-            text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-weight: 300;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             position: relative;
             z-index: 2;
         }
+
         .hero-header h1 .char {
             display: inline-block;
             opacity: 0;
             transform: translateY(-40px) scale(1.2);
             transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
         }
+
         .hero-header p {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-family: 'Noto Sans JP', sans-serif;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.15);
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
             position: relative;
             z-index: 2;
         }
@@ -78,36 +80,49 @@
             height: 100%;
             z-index: 1;
         }
+
         .bg-shapes div {
             position: absolute;
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.3);
             animation: float 20s infinite linear;
         }
+
         .bg-shapes .shape1 { width: 40px; height: 40px; left: 15%; bottom: -40px; animation-duration: 22s; }
         .bg-shapes .shape2 { width: 80px; height: 80px; left: 40%; bottom: -80px; animation-duration: 18s; animation-delay: 3s; }
         .bg-shapes .shape3 { width: 20px; height: 20px; left: 75%; bottom: -20px; animation-duration: 15s; }
-        .bg-shapes .shape4 { width: 120px; height: 120px; left: 90%; bottom: -120px; animation-duration: 25s; animation-delay: 5s;}
-        .bg-shapes .shape5 { width: 50px; height: 50px; left: 5%; bottom: -50px; animation-duration: 20s; animation-delay: 8s;}
-        .bg-shapes .shape6 { width: 30px; height: 30px; left: 60%; bottom: -30px; animation-duration: 16s; animation-delay: 2s;}
+        .bg-shapes .shape4 { width: 120px; height: 120px; left: 90%; bottom: -120px; animation-duration: 25s; animation-delay: 5s; }
+        .bg-shapes .shape5 { width: 50px; height: 50px; left: 5%; bottom: -50px; animation-duration: 20s; animation-delay: 8s; }
+        .bg-shapes .shape6 { width: 30px; height: 30px; left: 60%; bottom: -30px; animation-duration: 16s; animation-delay: 2s; }
+        .bg-shapes .shape7 { width: 15px; height: 15px; left: 25%; bottom: -15px; animation-duration: 19s; animation-delay: 1s; }
+        .bg-shapes .shape8 { width: 65px; height: 65px; left: 50%; bottom: -65px; animation-duration: 24s; animation-delay: 7s; }
+        .bg-shapes .shape9 { width: 100px; height: 100px; left: 85%; bottom: -100px; animation-duration: 21s; animation-delay: 10s; }
+        .bg-shapes .shape10 { width: 70px; height: 70px; left: 30%; bottom: -70px; animation-duration: 23s; animation-delay: 4s; }
+        .bg-shapes .shape11 { width: 25px; height: 25px; left: 65%; bottom: -25px; animation-duration: 17s; animation-delay: 9s; }
+        .bg-shapes .shape12 { width: 55px; height: 55px; left: 20%; bottom: -55px; animation-duration: 20s; animation-delay: 12s; }
 
         @keyframes float {
-            from { transform: translateY(0) rotate(0deg); }
-            to { transform: translateY(-120vh) rotate(360deg); }
+            from {
+                transform: translateY(0) rotate(0deg);
+            }
+            to {
+                transform: translateY(-120vh) rotate(360deg);
+            }
         }
 
         /* --- メインコンテンツ --- */
         .main-content {
             background: linear-gradient(to bottom, var(--bg-color), var(--secondary-color));
-            /* 下部のパディングを増やしてフッターとの重なりを回避 */
-            padding: 4rem 2rem 18rem;
+            padding: 4rem 2rem 6rem;
         }
+
         .intro-text {
             max-width: 800px;
             margin: 0 auto 3rem auto;
             text-align: center;
             font-size: 1.1rem;
         }
+
         .book-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -130,32 +145,67 @@
             opacity: 0;
             transform: translateY(30px);
         }
+
         .book-card.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
+
         .book-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 16px 40px 0 var(--shadow-color);
         }
+
         .card-header h3 {
             margin: 0 0 0.5rem 0;
             font-family: 'Noto Sans JP', sans-serif;
             font-weight: 700;
             font-size: 1.3rem;
         }
+
+        .card-header a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .card-header a:hover {
+            color: var(--hero-bg-end-bright);
+        }
+
         .card-header .author {
             font-size: 0.9rem;
             color: var(--text-color);
             opacity: 0.8;
             margin-bottom: 1rem;
         }
+
         .card-body p {
             font-size: 0.95rem;
             margin: 0;
             height: 110px;
-            overflow: auto;
+            overflow-y: auto; /* overflowをy軸に限定 */
+            padding-right: 10px; /* スクロールバーとの間に余白を追加 */
         }
+        
+        /* --- スクロールバーのデザイン --- */
+        .card-body p::-webkit-scrollbar {
+            width: 8px;
+        }
+        .card-body p::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+        .card-body p::-webkit-scrollbar-thumb {
+            background-color: var(--accent-color);
+            border-radius: 10px;
+            border: 2px solid var(--glass-bg); /* 背景となじませるためのボーダー */
+            transition: background-color 0.3s ease;
+        }
+        .card-body p::-webkit-scrollbar-thumb:hover {
+            background-color: var(--hero-bg-end-bright);
+        }
+
         .card-footer {
             margin-top: 1rem;
             padding-top: 1rem;
@@ -166,71 +216,30 @@
             font-size: 0.8rem;
             opacity: 0.7;
         }
-        .book-id {
+
+        .book-ndc {
             background-color: var(--accent-color);
             color: var(--text-color);
             padding: 0.2rem 0.5rem;
             border-radius: 5px;
             font-weight: bold;
         }
-        
-        /* --- フッターと波形アニメーション --- */
-        .footer-wrapper {
-            position: relative;
-            background-color: var(--footer-bg-color);
-        }
-        .waves-container {
-            width: 100%;
-            height: 15vh;
-            min-height: 100px;
-            max-height: 150px;
-            position: relative;
-            /* mainコンテンツのグラデーション終点色と同じにすることで、継ぎ目をなくす */
-            background-color: var(--secondary-color);
-        }
-        .waves {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-        }
-        .parallax > use {
-            animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
-        }
-        .parallax > use:nth-child(1) {
-            animation-delay: -2s;
-            animation-duration: 7s;
-        }
-        .parallax > use:nth-child(2) {
-            animation-delay: -3s;
-            animation-duration: 10s;
-        }
-        .parallax > use:nth-child(3) {
-            animation-delay: -4s;
-            animation-duration: 13s;
-        }
-        .parallax > use:nth-child(4) {
-            animation-delay: -5s;
-            animation-duration: 20s;
-            /* 波の最下層の色をフッターの背景色に合わせる */
-            fill: var(--footer-bg-color);
-        }
-        @keyframes move-forever {
-            0% { transform: translate3d(-90px,0,0); }
-            100% { transform: translate3d(85px,0,0); }
-        }
+
+        /* --- フッター --- */
         .footer {
-            padding: 2rem;
-            text-align: center;
+            /* main-contentのグラデーションの終点の色と合わせる */
             background-color: var(--footer-bg-color);
             color: var(--text-color);
+            padding: 3rem 2rem;
+            text-align: center;
             opacity: 0.9;
         }
+
         .footer p {
             margin: 0;
             font-family: 'Josefin Sans', sans-serif;
             font-size: 1rem;
-            font-weight: 200;
+            font-weight: 400;
         }
     </style>
 </head>
@@ -240,6 +249,8 @@
         <div class="bg-shapes">
             <div class="shape1"></div><div class="shape2"></div><div class="shape3"></div>
             <div class="shape4"></div><div class="shape5"></div><div class="shape6"></div>
+            <div class="shape7"></div><div class="shape8"></div><div class="shape9"></div>
+            <div class="shape10"></div><div class="shape11"></div><div class="shape12"></div>
         </div>
         <h1 id="animated-title">絵本の森</h1>
         <p>心に残る読み聞かせ絵本リスト</p>
@@ -254,27 +265,10 @@
             <!-- JavaScriptでカードがここに追加されます -->
         </div>
     </main>
-    
-    <div class="footer-wrapper">
-        <div class="waves-container">
-            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-                <defs>
-                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-                </defs>
-                <g class="parallax">
-                    <!-- 波の色をフッターのテーマカラー（ピンク）の濃淡に変更 -->
-                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255, 209, 209, 0.7)" />
-                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255, 209, 209, 0.5)" />
-                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255, 209, 209, 0.3)" />
-                    <use xlink:href="#gentle-wave" x="48" y="7" />
-                </g>
-            </svg>
-        </div>
-        <footer class="footer">
-            <p>&copy; 2025 Picture Book Materials for Child Care</p>
-        </footer>
-    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Picture Book Materials for Child Care</p>
+    </footer>
 
 
     <script>
@@ -282,7 +276,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const title = document.getElementById('animated-title');
             const text = title.textContent;
-            title.innerHTML = ''; 
+            title.innerHTML = '';
 
             text.split('').forEach((char, index) => {
                 const span = document.createElement('span');
@@ -302,104 +296,774 @@
         });
 
         // --- 全絵本データ ---
-        const allBookData = [
-            { id: 506677, title: "あさになったので まどをあけますよ", author: "荒井 良二 / 著", publisher: "偕成社", year: 2011.12, summary: "山、町、家、それぞれの人々が朝を迎えて窓を開ける。その繰り返される日常の営みの中に、新しい一日への希望と再生の願いが込められた、心温まる絵本です。" },
-            { id: 506397, title: "へんしんトンネル", author: "あきやま ただし / 作・絵", publisher: "金の星社", year: 2002.9, summary: "かっぱ、かっぱ、かっぱ…と唱えながら通ると「ぱっか、ぱっか」と馬になって出てくる不思議なトンネル。言葉遊びの楽しさがいっぱいの絵本です。" },
-            { id: 515740, title: "ねたふりゆうちゃん", author: "阿部 結 / 著", publisher: "白泉社", year: 2021.3, summary: "お母さんに甘えたいゆうちゃんが、家のあちこちで寝たふり。親子の愛情あふれるやりとりが、愛らしくユーモラスに描かれています。" },
-            { id: 512910, title: "おたすけトゥース", author: "いしい ひろし / 著", publisher: "白泉社", year: 2019.4, summary: "困っている子がいると「おたすけトゥース！」と現れる正義の味方。歯磨きや着替えなど、子どもの「できない」に寄り添い、応援してくれる絵本です。" },
-            { id: 510633, title: "ちっちゃいさん", author: "イソール / 作、宇野 和美 / 訳", publisher: "講談社", year: 2016.4, summary: "ある朝、男の子が自分より「ちっちゃいさん」をみつける。ちっちゃいさんがいることで男の子が成長していく姿を通して、兄弟関係や心の成長を描きます。" },
-            { id: 508592, title: "ペルナルさんのぼうし", author: "いまい あやの / 作", publisher: "BL出版", year: 2014.2, summary: "物知りのペルナルさんが大切にしている帽子が風に飛ばされてしまう。動物たちが協力して帽子を探す冒険が、美しいイラストで描かれます。" },
-            { id: 508786, title: "ことりのくるひ", author: "岩崎 ちひろ / 絵と文", publisher: "至光社", year: 1980, summary: "窓の外にやってきた小鳥との静かで優しい心の交流を、岩崎ちひろの繊細なタッチで描いた、詩情あふれる一冊です。" },
-            { id: 018780, title: "もりのなか", author: "いわむら かずお / 作", publisher: "至光社", year: 1988, summary: "森の動物たちの生活を、美しい言葉と細やかな絵で描いたロングセラー。自然の営みや命のつながりを静かに伝えます。" },
-            { id: 506493, title: "空の絵本", author: "長田 弘 / 作、荒井 良二 / 絵", publisher: "講談社", year: 2011.10, summary: "「空はみんなのもの」というメッセージを、詩的な言葉と伸びやかな絵で表現。空を見上げる楽しさ、世界の広さを感じさせてくれます。" },
-            { id: 503961, title: "つみきのいえ", author: "加藤 久仁生 / 絵、平田 研也 / 文", publisher: "白泉社", year: 2008.10, summary: "海面が上昇するたびに上に家を建て増していくおじいさん。ある日、落としたパイプを探しに潜ると、家族との思い出が蘇る。静かで感動的な物語。" },
-            { id: 505786, title: "おもちのきもち", author: "かがくい ひろし / 作・絵", publisher: "講談社", year: 2005.12, summary: "鏡餅の気持ちになって、飾られている間の退屈さや、食べられることへの期待と不安をユーモラスに描いた、お正月にぴったりの絵本。" },
-            { id: 506202, title: "しゃっくりがいこつ", author: "マージェリー・カイラー / 作", publisher: "セーラー出版", year: 2004.10, summary: "真夜中にしゃっくりが止まらなくなったがいこつ。驚かそうと追いかける男の子との、怖くておかしい追いかけっこが繰り広げられます。" },
-            { id: 505794, title: "はらぺこあおむし", author: "エリック＝カール / 作、もり ひさし / 訳", publisher: "偕成社", year: 1989, summary: "生まれたてのあおむしが、たくさん食べて成長し、美しい蝶になるまでを描く。鮮やかな色彩と仕掛けが楽しい、世界中で愛される名作です。" },
-            { id: 509784, title: "ちいさなにわ", author: "さくらせかい / 作", publisher: "学研教育出版", year: 2014.9, summary: "" },
-            { id: 506483, title: "いつでも会える", author: "菊田 まりこ / 作", publisher: "学研", year: 2007.2, summary: "大好きな飼い主を亡くした犬のシロが、悲しみを乗り越えていく姿を描く。目には見えなくても心は繋がっているという、温かいメッセージが込められた絵本。" },
-            { id: 505784, title: "ゆうちゃんとけいかちゃん", author: "くろだ かおる / 作、せな けいこ / 絵", publisher: "ひかりのくに", year: 1997.6, summary: "" },
-            { id: 509020, title: "ちがうねん", author: "ジョン・クラッセン / 作、長谷川 義史 / 訳", publisher: "クレヨンハウス", year: 2012.11, summary: "小さな魚が大きな魚から帽子を盗み、「これは僕のじゃない」と言い訳を続ける。ユーモラスな展開と、想像を掻き立てる結末が魅力です。" },
-            { id: 505789, title: "はなをくんくん", author: "ルース・クラウス / 文、マーク・シーモント / 絵", publisher: "福音館書店", year: 1967.3, summary: "冬眠から覚めた動物たちが、春の匂いを追って「くんくん」。春の訪れの喜びが、愛らしい絵とリズミカルな言葉で表現されています。" },
-            { id: 508254, title: "きもち", author: "ジャナン・ケイン / 作、いしい むつみ / 訳", publisher: "少年写真新聞社", year: 2013.9, summary: "嬉しい、悲しい、怒っている...。様々な「きもち」をモンスターの表情で豊かに表現。自分の感情を理解し、言葉にする手助けになります。" },
-            { id: 514088, title: "ゆめぎんこう", author: "コンドウアキ / 著", publisher: "白泉社", year: 2020.10, summary: "見た夢を預かってくれる「ゆめぎんこう」。良い夢は誰かに貸し出され、悪い夢は食べてくれる。夢をめぐる不思議で心温まるお話です。" },
-            { id: 515826, title: "はるとあき", author: "斉藤 倫 / 作、うきまる / 絵、吉田 尚令 / 絵", publisher: "小学館", year: 2019.5, summary: "「はる」と「あき」という二人の子どもの姿を通して、季節の移ろいや自然のサイクルを詩的に描いた、美しくも少し切ない物語。" },
-            { id: 502003, title: "100万回生きたねこ", author: "佐野 洋子 / 作・絵", publisher: "講談社", year: 1977.10, summary: "自分が大好きで、誰のことも愛さなかったねこ。初めて愛する存在と出会い、そして失うことで、本当の生と死を経験する、深く哲学的な物語。" },
-            { id: 515176, title: "まないたにりょうりをあげないこと", author: "シゲタ サヤカ / 作", publisher: "講談社", year: 2009.8, summary: "料理が嫌いなまないたが、上に乗せられた食材をことごとく拒否！奇想天外な展開とユーモアが爆発する、笑いの絶えない一冊です。" },
-            { id: 517340, title: "ラッキーカレー", author: "シゲタサヤカ / 作", publisher: "小学館", year: 2022.11, summary: "ラッキーになりたい動物たちが、ラッキーな具材ばかりを集めてカレーを作るお話。想像力豊かでナンセンスな展開が楽しい絵本です。" },
-            { id: 506553, title: "ぞうのこどもがみたゆめ", author: "吉田 景一 / 作、柴崎 るり子 / 絵", publisher: "Kiba Book", year: 2001.2, summary: "動物園のぞうの子どもが見る、故郷アフリカの夢。夢を通して、家族や仲間との絆、自然への憧れを描いた、優しくも切ない物語。" },
-            { id: 507849, title: "ねつでやすんでいるキミへ", author: "しおり あかり / 著", publisher: "岩崎書店", year: 2013.4, summary: "熱を出して寝込んでいる子どもに寄り添い、励ましの言葉をかける絵本。不安な気持ちを和らげ、元気が出るような優しいメッセージが詰まっています。" },
-            { id: 502739, title: "もったいないばあさん", author: "真珠 まりこ / 作・絵", publisher: "講談社", year: 2004.10, summary: "「もったいない」が口癖のばあさんが、食べ残しや無駄遣いを戒める。物を大切にする心を、楽しく、そして分かりやすく教えてくれます。" },
-            { id: 508614, title: "イカになあれ", author: "真珠 まりこ / 作", publisher: "講談社", year: 2014.3, summary: "男の子が「イカになあれ」と唱えると、本当にイカになって海の世界へ！ユーモラスな展開と、イカの生態も少し学べる楽しい絵本です。" },
-            { id: 502490, title: "だめよ、デイビッド！", author: "デイビッド・シャノン / 作、小川 仁央 / 訳", publisher: "評論社", year: 2001.4, summary: "家中を散らかし、いたずらばかりするデイビッドに、ママは「だめよ！」と叱ってばかり。でも最後には、どんなに叱られても変わらない親子の愛情が描かれています。" },
-            { id: 510634, title: "とんでもない", author: "鈴木 のりたけ / 作・絵", publisher: "アリス館", year: 2016.2, summary: "「きみ、頭にヘビがのってるよ」「とんでもない！これはネクタイさ」といったように、常識を覆すユニークな発想が次々と飛び出す、想像力を刺激する絵本です。" },
-            { id: 504000, title: "ブラッキンダー", author: "スズキ コージ / 作・絵", publisher: "イースト・プレス", year: 2008.8, summary: "不思議な呪文とともに現れる怪物ブラッキンダー。圧倒的なエネルギーと色彩で描かれる、スズキコージの世界観が炸裂するアートな一冊です。" },
-            { id: 513529, title: "そらとぶクレヨン", author: "竹下 文子 / 文、鈴木 まもる / 絵", publisher: "金の星社", year: 2006.3, summary: "女の子のクレヨンたちが、自分たちで絵を描き始め、空を飛ぶ冒険に出かけるお話。クレヨンたちの生き生きとした活躍が魅力です。" },
-            { id: 515145, title: "バナナじけん", author: "高畠 那生 / 作", publisher: "BL出版", year: 2012.12, summary: "サルがバナナの皮で滑って転んだことから始まる、奇想天外な連鎖反応。次々と起こる「じけん」がユーモラスに描かれるナンセンス絵本です。" },
-            { id: 514330, title: "うそ", author: "谷川 俊太郎 / 詩、中島 信一 / 絵", publisher: "主婦の友社", year: 2021.4, summary: "「うそ」というテーマを、谷川俊太郎の詩的な言葉で深く掘り下げます。子どものつく嘘から、大人の社会にはびこる嘘まで、様々な嘘の形を問いかけます。" },
-            { id: 513528, title: "つまんない つまんない", author: "竹下 文子 / 文、鈴木 まもる / 絵", publisher: "金の星社", year: 2005.1, summary: "「つまんない」と感じたとき、人はどんなことを考える？退屈な時間から生まれる無限の空想の世界を、ヨシタケシンスケならではの視点で描きます。（※ヨシタケシンスケ作の同名絵本とは別作品）" },
-            { id: 508333, title: "しろくまのパンツ", author: "tupera tupera / 作", publisher: "ブロンズ新社", year: 2012.9, summary: "パンツをなくしてしまったしろくまくん。ねずみさんと一緒にパンツを探すうちに、しましま模様や水玉模様など、いろんなパンツが登場する楽しい探し絵本です。" },
-            { id: 515682, title: "ホットチョコレート-Hot chocolate for you", author: "刀根 里衣 / 著", publisher: "NHK出版", year: 2022.11, summary: "" },
-            { id: 505781, title: "おおかきなカブ ロシア民話", author: "A. トルストイ / 再話、内田 莉莎子 / 訳", publisher: "福音館書店", year: 1995, summary: "おじいさんが植えたカブが、とてつもなく大きく育ちます。おじいさん、おばあさん、孫、犬、猫、ねずみと、みんなで力を合わせてカブを抜こうとする有名なロシア民話です。" },
-            { id: 513779, title: "りんごがたべたいねずみくん", author: "なかえ よしを / 作、上野 紀子 / 絵", publisher: "ポプラ社", year: 1999.9, summary: "木の上にあるりんごが食べたいねずみくん。友達の動物たちが協力しようとしますが、なかなかうまくいきません。シンプルな繰り返しが楽しい人気シリーズの一冊。" },
-            { id: 513780, title: "ねみちゃんとねずみくん", author: "なかえ よしを / 作、上野 紀子 / 絵", publisher: "ポプラ社", year: 1976.11, summary: "ねずみくんと、ガールフレンドのねみちゃんの心温まる交流を描くシリーズの一冊。二人の可愛らしいやりとりが魅力です。" },
-            { id: 513781, title: "ねずみくんのプレゼント", author: "なかえ よしを / 作、上野 紀子 / 絵", publisher: "ポプラ社", year: 2004.7, summary: "ねみちゃんへのプレゼントに悩むねずみくん。友達に相談すると、みんな自分と同じものを薦めます。友情と個性の違いがユーモラスに描かれます。" },
-            { id: 513782, title: "どうしちゃったの？ねずみくん", author: "なかえ よしを / 作、上野 紀子 / 絵", publisher: "ポプラ社", year: 2010.5, summary: "いつもと様子の違うねずみくんを、みんなが心配します。実はねずみくんは...。友達を思いやる気持ちの大切さを伝える物語。" },
-            { id: 506813, title: "ドングリ・ドングラ ドングリのうちはなし", author: "中川 淳 / 作", publisher: "水声社", year: 2012.6, summary: "" },
-            { id: 509925, title: "はなちゃんおみそしる", author: "中川 ひろたか / 文、長新 太 / 絵", publisher: "主婦の友社", year: 2015.6, summary: "若くして亡くなった母親が、5歳の娘に遺した「みそ汁の作り方」。食を通して命と家族の絆を伝える、実話をもとにした感動の物語。（※絵本版）" },
-            { id: 500654, title: "おたすけこびと - Who Made This Cake?", author: "なかがわ ちひろ / 文、コヨセ・ジュンジ / 絵", publisher: "徳間書店", year: 2007.2, summary: "夜中、誰も見ていない間に、小さなこびとたちが現れて、散らかったおもちゃを片付けたり、壊れたものを直したりしてくれます。ファンタジックで心温まるお話。" },
-            { id: 515385, title: "ぐりとぐらのかいすいよく", author: "中川 李枝子 / 作、山脇 百合子 / 絵", publisher: "福音館書店", year: 2012.7, summary: "海辺で遊んでいたぐりとぐらは、うみぼうずから手紙の入った瓶を見つけます。うみぼうずを助けたお礼に、様々な楽しい泳ぎ方を教えてもらう夏の大冒険物語。" },
-            { id: 013510, title: "どんなかんじかなあ", author: "中山 千夏 / ぶん、和田 誠 / 絵", publisher: "自由国民社", year: 2005.7, summary: "「嬉しいってどんな感じ？」「悲しいってどんな感じ？」と、様々な感情を子どもに問いかける絵本。自分の気持ちを言葉にする手助けをします。" },
-            { id: 513785, title: "じゃがいもポテトくん", author: "長谷川 義史 / 作・絵", publisher: "小学館", year: 2010.7, summary: "畑で生まれたじゃがいもたちが、様々な料理に変身して活躍する様子を、関西弁の軽快なリズムで描く、楽しくておいしそうな絵本です。" },
-            { id: 503334, title: "ぼくがラーメンたべてるとき", author: "長谷川 義史 / 作・絵", publisher: "教育画劇", year: 2007.7, summary: "男の子がラーメンを食べている、その同じ瞬間に、世界のどこかでは戦争が起きている。日常のすぐ隣にある非日常を対比させ、平和の尊さを力強く訴えかけます。" },
-            { id: 513786, title: "いいから いいから 1", author: "長谷川 義史 / 作", publisher: "絵本館", year: 2006.10, summary: "おじいちゃんの口癖は「いいから いいから」。雷様が来ても、泥棒が入っても、おおらかに受け入れてしまう。寛容な心とユーモアが満載の絵本。" },
-            { id: 508282, title: "うさぎねこ", author: "蜂飼 耳 / ぶん、牧野 千穂 / 絵", publisher: "ブロンズ新社", year: 2011.7, summary: "うさぎでもなく、ねこでもない「うさぎねこ」。自分は何者なのかを探す旅を通して、アイデンティティや他者との違いを優しく描きます。" },
-            { id: 506205, title: "くろねこかあさん", author: "東 君平 / 作", publisher: "福音館書店", year: 1990.1, summary: "母さん黒猫が、たくさんの子猫たちを愛情いっぱいに育てる日常を描く。シンプルな絵と言葉の中に、母と子の深い絆が感じられる温かい一冊。" },
-            { id: 512639, title: "ねずみさんのふゆじたく", author: "キャスリン・ビーチャー / 文", publisher: "徳間書店", year: 2018.11, summary: "" },
-            { id: 503512, title: "ボールのまじゅつしウィリー", author: "アンソニー・ブラウン / 作、久山 太市 / 訳", publisher: "評論社", year: 1998.1, summary: "サッカーが下手で仲間に入れてもらえないウィリーが、不思議な靴を手に入れて名選手になる。自信を持つことの大切さを教えてくれる物語。" },
-            { id: 503316, title: "しずかに！ここはえほんのよみものです", author: "ドン・フリーマン / 作、なかがわ ちひろ / 訳", publisher: "BL出版", year: 2008.4, summary: "図書館を舞台に、人間や動物たちが静かに本を読むことの楽しさを描きます。本を読むことの素晴らしさを伝える、心安らぐ一冊。" },
-            { id: 510416, title: "ちいさなちいさなおばあちゃん", author: "エルサ・ベスコフ / 作、いしい としこ / 訳", publisher: "偕成社", year: 2001.9, summary: "森の奥で暮らす、とても小さな素敵なおばあちゃん。彼女の丁寧な暮らしや動物たちとの交流を、北欧の美しい自然とともに描きます。" },
-            { id: 508987, title: "しろいうさぎとくろいうさぎ", author: "ガース・ウィリアムズ / 作・絵", publisher: "福音館書店", year: 2000.1, summary: "" },
-            { id: 509241, title: "もりはいいところ おじいちゃんのパンこうば", author: "室井 滋 / 文、長谷川 義史 / 絵", publisher: "写真文化首都北海道「写真の町」東川町", year: 2014.10, summary: "森の中にあるパン工場で働くおじいちゃんと、孫の交流を描く。自然の恵みや働くことの喜びが、温かい文章と写真で綴られます。" },
-            { id: 512807, title: "でこぼこホットケーキ", author: "よしだ あつこ / 作、川副 圭子 / 絵", publisher: "世界文化社", year: 2019.2, summary: "形が不格好でも、愛情がこもっていれば最高においしい！見た目ではなく、心のこもったものが一番だというメッセージを、ユーモラスに伝えます。" },
-            { id: 505787, title: "てぶくろ ウクライナ民話", author: "エウゲーニー・M・ラチョフ / 絵、うちだ りさこ / 訳", publisher: "福音館書店", year: 1965.11, summary: "おじいさんが森で落とした片方の手袋に、ねずみ、かえる、うさぎ、きつね...と次々に動物たちが入り込んで住み着くウクライナ民話。" },
-            { id: 506191, title: "コウモリとしょかんへいく", author: "ブライアン・リーズ / 作、さいごう ようこ / 訳", publisher: "徳間書店", year: 2011.8, summary: "夜行性のコウモリが、開館時間を過ぎた図書館に忍び込み、読書の楽しさを満喫する。本が好きになるきっかけをくれるファンタジックな物語。" },
-            { id: 505804, title: "いっしょならもっといい", author: "ルイス・スロボドキン / 作、木坂 涼 / 訳", publisher: "偕成社", year: 2011.2, summary: "一人でいるよりも、誰かと「いっしょ」にいることの楽しさや温かさを描く。シンプルな言葉と絵で、友情の大切さを伝えます。" },
-            { id: 507893, title: "あおくんときいろちゃん", author: "レオ＝レオニ / 作、藤田 圭雄 / 訳", publisher: "至光社", year: 1979, summary: "青色の「あおくん」と黄色の「きいろちゃん」。二人が抱き合うと緑色になり、親たちに見分けられなくなってしまう。色の混ざり合いを通して、友情や個性を描いた名作。" },
-            { id: 007590, title: "ひとまねこざるさるのジョージ", author: "エッチ・エイ・レイ / 文、光吉 夏弥 / 訳", publisher: "岩波書店", year: 1973, summary: "" },
-            { id: 007591, title: "ろばの子だまってなさい", author: "エッチ・エイ・レイ / 文、光吉 夏弥 / 訳", publisher: "岩波書店", year: 1973, summary: "言うことを聞かないろばの子。様々な動物の鳴き声を真似してばかりで、自分の鳴き方を忘れてしまう。自分らしさを見つける物語。" },
-            { id: 007592, title: "たこをあげるひとまねこざる", author: "マーガレット・レイ / 文、エッチ・エイ・レイ / 絵", publisher: "岩波書店", year: 1973, summary: "" },
-            { id: 512561, title: "ぜったいにおしちゃダメ？", author: "ビル・コッター / 作", publisher: "サンクチュアリ出版", year: 2017.9, summary: "「このボタン、ぜったいにおしちゃダメ？」と読者に語りかけてくる参加型絵本。押したくなる気持ちをくすぐられ、親子で盛り上がること間違いなし。" },
-            { id: 503025, title: "ラチとらいおん", author: "マレーク・ベロニカ / 文・絵、とくなが やすとも / 訳", publisher: "福音館書店", year: 1965.7, summary: "世界一弱虫のラチのところに、小さな赤いライオンが現れる。ライオンとの交流を通して、ラチが少しずつ勇気を出していく物語。" },
-            { id: 503019, title: "ぐりとぐら", author: "中川 李枝子 / 作、大村 百合子 / 絵", publisher: "福音館書店", year: 1967.4, summary: "野ねずみのぐりとぐらが森で見つけた大きなたまごで、大きなカステラを作るお話。分かち合うことの喜びを描いた、誰もが知る不朽の名作。" },
-            { id: 504341, title: "うさこちゃんとどうぶつえん", author: "ディック・ブルーナ / 文・絵、まつおか きょうこ / 訳", publisher: "福音館書店", year: 2009.4, summary: "ミッフィー（うさこちゃん）がお父さんと動物園に行くお話。キリンやペンギンなど、様々な動物との出会いをシンプルで愛らしい絵で描きます。" },
-            { id: 506505, title: "たったひとつのねがいごと", author: "バーバラ・マクリントック / 作、福本 友美子 / 訳", publisher: "ほるぷ出版", year: 2011.11, summary: "" },
-            { id: 509753, title: "はじめてのおつかい", author: "筒井 頼子 / 作、林 明子 / 絵", publisher: "福音館書店", year: 2012.4, summary: "5歳のみいちゃんが、お母さんに頼まれて初めて一人でおつかいに行くドキドキの体験を、子どもの視点から丁寧に描いたロングセラー。" },
-            { id: 511159, title: "かいじゅうたちのいるところ", author: "モーリス・センダック / 作、じんぐう てるお / 訳", publisher: "冨山房", year: 1975.12, summary: "いたずらをして夕食抜きで部屋に入れられたマックス。すると部屋が森になり、航海の末にたどり着いたのはかいじゅうの国。そこで王様になりますが、やがて寂しくなり家へ帰ると、温かい夕食が待っていました。" },
-            { id: 508354, title: "きみはほんとうにステキだね", author: "宮西 達也 / 作・絵", publisher: "ポプラ社", year: 2004.9, summary: "ティラノサウルスシリーズの一冊。乱暴でひとりぼっちだったティラノサウルスが、他の恐竜との交流を通して、優しさや思いやりを知る感動の物語。" },
-            { id: 505354, title: "いちばんあいされてるのはぼく", author: "宮西 達也 / 作・絵", publisher: "ポプラ社", year: 2010.9, summary: "" },
-            { id: 509924, title: "スイミー ちいさなかしこいさかなのはなし", author: "レオ＝レオニ / 作、谷川 俊太郎 / 訳", publisher: "好学社", year: 2010.11, summary: "大きな魚に仲間を食べられてしまった小さな黒い魚スイミー。残った仲間たちと協力し、大きな魚のふりをして海を泳ぐ、知恵と勇気の物語。" },
-            { id: 508945, title: "英語でもよめるスイミー", author: "レオ＝レオニ / 作、谷川 俊太郎 / 訳", publisher: "好学社", year: 2013.6, summary: "名作「スイミー」を、日本語と英語の両方で楽しめるバイリンガル版。英語の美しい響きと共に、物語を新たな形で味わえます。" },
-            { id: 508355, title: "ぐりとぐら", author: "中川 李枝子 / 作、大村 百合子 / 絵", publisher: "福音館書店", year: 2007.4, summary: "野ねずみのぐりとぐらが森で見つけた大きなたまごで、大きなカステラを作るお話。分かち合うことの喜びを描いた、誰もが知る不朽の名作。" },
-            { id: 513778, title: "ねずみくんのチョッキ", author: "なかえ よしを / 作、上野 紀子 / 絵", publisher: "ポプラ社", year: 2000.2, summary: "お母さんが編んでくれた赤いチョッキを、動物の友達に「ちょっときせてよ」と貸していくうちに、どんどん伸びてしまいます。物を大切にする心や、優しさを学べるロングセラー絵本です。" },
-            { id: 515173, title: "こんとあき", author: "林 明子 / 作", publisher: "福音館書店", year: 1989.6, summary: "女の子あきと、おばあちゃんが作ったキツネのぬいぐるみ「こん」。腕がほころびてしまったこんを治してもらうため、二人で一緒に冒険の旅に出ます。" },
-            { id: 506678, title: "よるくま", author: "酒井 駒子 / 作・絵", publisher: "偕成社", year: 1999.10, summary: "夜、男の子のところに「よるくま」がやってきて、自分のお母さんを探すのを手伝ってほしいと頼みます。夜の闇の不安と、母の温かさを描いた物語。" },
-            { id: 505767, title: "こびとのくつや", author: "グリム / 原作、いもと ようこ / 文・絵", publisher: "金の星社", year: 2006.10, summary: "貧しい靴屋さんのために、夜中のうちに小人たちが素晴らしい靴を作ってくれるグリム童話。親切への恩返しの心を描いた、心温まるお話です。" },
-            { id: 516820, title: "おんなじおんなじ", author: "大塚 健太 / 作、くさか みなこ / 絵", publisher: "講談社", year: 2024.6, summary: "" },
-            { id: 513998, title: "ようちえん", author: "ディック・ブルーナ / 文・絵、いしい ももこ / 訳", publisher: "福音館書店", year: 2010.4, summary: "ミッフィー（うさこちゃん）が初めて幼稚園に行く日のお話。新しい環境への期待と少しの不安を、温かく描きます。" },
-            { id: 518767, title: "ちっちゃなミッケ！", author: "大塚 健太 / 作、さかい みな / 絵", publisher: "福音館書店", year: 2020.6, summary: "" },
-            { id: 509850, title: "じぶんだけのいろ", author: "レオ＝レオニ / 作、谷川 俊太郎 / 訳", publisher: "好学社", year: 1980.6, summary: "" }
-        ];
+        const allBookData = [{
+            ndc: "E-ア",
+            title: "あさになったのでまどをあけますよ",
+            author: "荒井良二∥著",
+            publisher: "偕成社",
+            year: "2011.12",
+            isbn: "9784032323801",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784032323801",
+            summary: "なにげない日々のくりかえし、そのなかにこそあるたしかな希望、生きることのよろこび、きみのまちははれてるかな。大気にみなぎる光と気配、風景の力を描く荒井良二のあらたな傑作。"
+        }, {
+            ndc: "E-ア",
+            title: "へんしんトンネル",
+            author: "あきやまただし∥作・絵",
+            publisher: "金の星社",
+            year: "2002.9",
+            isbn: "4323033494",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4323033494",
+            summary: "このトンネルをくぐると、なぜかいろんなものがへんしんしちゃうんです。かっぱやロボットがトンネルをくぐると…いったいなんにへんしんしちゃうんでしょうね？さあ、あなたもこのトンネルをくぐって、ふしぎなことばあそびをたのしんでみませんか。"
+        }, {
+            ndc: "E-ア",
+            title: "ねたふりゆうちゃん",
+            author: "阿部結∥著、",
+            publisher: "白泉社",
+            year: "2021.3",
+            isbn: "9784592762836",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784592762836",
+            summary: "椅子の上や階段、いろんなところで寝たふりをするゆうちゃん。それは、寝たふりをするとお母さんが抱っこしてくれるのが嬉しいから。ある日お母さんと一緒に行ったお外で寝たふりをすると…?子どもが絶対にしたことのある「寝たふり」が、微笑ましくふんわりと描かれる、注目の新人作家の絵本です。"
+        }, {
+            ndc: "E-イ",
+            title: "おたすけトミーでばんだよ！",
+            author: "いしいひろし∥著",
+            publisher: "白泉社",
+            year: "2019.4",
+            isbn: "9784592762478",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784592762478",
+            summary: "ぼくだってなれるよね？あこがれのあのヒーロー！みんなを助けようと思ってがんばるほど、逆にみんなに助けられてしまうトミーだけど…！？やさしさあふれるタッチで、思いやりの大切さが伝わる絵本。３"
+        }, {
+            ndc: "E-イ",
+            title: "ちっちゃいさん",
+            author: "イソール∥作、宇野和美∥訳",
+            publisher: "講談社",
+            year: "2016.4",
+            isbn: "9784062830942",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784062830942",
+            summary: "リンドグレーン記念文学賞受賞作家による、どんな育児書よりも、あかちゃんのことがわかる本。あかちゃんがやってくると、世界がまるごと変わります。その「大事件」を、世界で注目の絵本作家・イソールが、子どもの目線やユーモアをふまえた視点で、ゆかいに、おおらかに表現した絵本です。"
+        }, {
+            ndc: "E-イ",
+            title: "ベルナルさんのぼうし",
+            author: "いまいあやの∥作",
+            publisher: "ＢＬ出版",
+            year: "2014.2",
+            isbn: "9784776406488",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784776406488",
+            summary: "くまのベルナルさんには友だちがいません。いつもひとりぼっちです。ある日、ベルナルさんのぼうしにキツツキが穴をあけて…。繊細な絵でつむぎだす、やさしい物語。"
+        }, {
+            ndc: "E-イ",
+            title: "ことりのくるひ",
+            author: "岩崎ちひろ∥絵・文",
+            publisher: "至光社",
+            year: "〔1980〕",
+            isbn: "4783400512",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4783400512",
+            summary: "あんなにほしかった小鳥。でも小鳥の元気のない様子に、小さな胸は痛む。日常のありふれたできごとが、作者の世界を通すと誰にも忘れ得ぬ心の体験となる。'73年、ボローニャ国際児童図書展グラフィック賞"
+        }, {
+            ndc: "E-イ",
+            title: "もりのあかちゃん",
+            author: "いわむらかずお∥作",
+            publisher: "至光社",
+            year: "1988",
+            isbn: "9784783401681",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784783401681",
+            summary: "春の森で子リスたちは、おなかをすかせた小鳥の赤ちゃんに出会います。ところが、なにをあげてもいやいやをする赤ちゃんに子リスたちは大弱り…。"
+        }, {
+            ndc: "E-オ",
+            title: "空の絵本",
+            author: "長田弘∥作、荒井良二∥絵",
+            publisher: "講談社",
+            year: "2011.10",
+            isbn: "9784061324879",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784061324879",
+            summary: "詩人・長田弘が生みだした美しいことばの粒。かけがえのない一日一日の鮮やかさ。絵本作家・荒井良二がかみしめ、味わって、一枚一枚の絵に描ききった珠玉の一冊。"
+        }, {
+            ndc: "E-オ",
+            title: "ちんあなごのしんかいツアー",
+            author: "大塚健太∥作、くさかみなこ∥絵",
+            publisher: "講談社",
+            year: "2024.6",
+            isbn: "9784065357590",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784065357590",
+            summary: "チンチン！チンチンチン！ちんあなごたちがチョウチンアンコウごうにのってふかーいうみのそこへ。きをつけていってらっしゃい！"
+        }, {
+            ndc: "E-カ",
+            title: "つみきのいえ",
+            author: "加藤久仁生∥絵、平田研也∥文",
+            publisher: "白泉社",
+            year: "2008.10",
+            isbn: "9784592761310",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784592761310",
+            summary: "水がふえつづける土地で家をつみ上げ、つみ上げ、たった独りで暮らし続けるおじいさん。彼にはここをはなれられないわけがあるのです──。アヌシー国際アニメーションフェスティバル最高賞アニメの絵本。"
+        }, {
+            ndc: "E-カ",
+            title: "おもちのきもち",
+            author: "かがくいひろし∥作・絵",
+            publisher: "講談社",
+            year: "2005.12",
+            isbn: "4061323237",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4061323237",
+            summary: "「もう、たいへんなんです」お正月、“かがみもち”は、とある決心を……。第27回講談社絵本新人賞受賞作"
+        }, {
+            ndc: "E-カ",
+            title: "しゃっくりがいこつ",
+            author: "マージェリー・カイラー∥作、Ｓ．Ｄ．シンドラー∥絵、黒宮純子∥訳",
+            publisher: "セーラー出版",
+            year: "2004.10",
+            isbn: "4883301508",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4883301508",
+            summary: "がいこつのしゃっくりはほねがきしんではががちがちいっておなかがよじれてもうたいへん。ヒック、ヒック、ヒック。どうしたらがいこつのしゃっくりはとめられるでしょうか。"
+        }, {
+            ndc: "E-カ",
+            title: "はらぺこあおむし",
+            author: "エリック＝カール∥作、もりひさし∥訳",
+            publisher: "偕成社",
+            year: "1989",
+            isbn: "4033280103",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4033280103",
+            summary: "毎日お菓子ばかりを食べておなかをこわした青虫は、次の日、緑の葉っぱを食べるとどんどん大きくなって…。小さな青虫が美しい蝶になるまでの様子を、数や曜日の認識を織りこんでユニークに描いた穴あきしかけ絵本！ アメリカ・グラフィックアート協会賞、全国学校図書館協議会選定「よい絵本」"
+        }, {
+            ndc: "E-キ",
+            title: "ちきばんにゃー",
+            author: "きくちちき∥作",
+            publisher: "学研教育出版",
+            year: "2014.9",
+            isbn: "9784052040283",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784052040283",
+            summary: "ちきばんちきばん、ちきばんたいのこうしんよ！わたしがたいちょう、どんどんすすめー！ブラティスラヴァ世界絵本原画展２０１３“金のりんご賞”受賞作家きくちちき、待望の受賞後第１作。"
+        }, {
+            ndc: "E-キ",
+            title: "いつでも会える",
+            author: "菊田まりこ∥作",
+            publisher: "学研",
+            year: "2007.2",
+            isbn: "9784052027642",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784052027642",
+            summary: "ぼくには、だいすきで大切な人がいる。―シロ。ボローニャ国際児童図書展児童賞・特別賞受賞。１００万部超のベストセラー絵本が読み聞かせに最適な大型判になりました。"
+        }, {
+            ndc: "E-ク",
+            title: "ゆうれいとすいか",
+            author: "くろだかおる∥作、せなけいこ∥絵",
+            publisher: "ひかりのくに",
+            year: "1997.6",
+            isbn: "4564006568",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4564006568",
+            summary: "あー、暑い暑い。暑い時はよく冷えたスイカに限る。そう思うのは人間だけでなく、幽霊も同じよう。人間が冷やしていたスイカを食べてしまった幽霊は、罰として人間の言うことを何でもきくハメになりますが…。"
+        }, {
+            ndc: "E-ク",
+            title: "ちがうねん",
+            author: "ジョン・クラッセン∥作、長谷川義史∥訳",
+            publisher: "クレヨンハウス",
+            year: "2012.11",
+            isbn: "9784861012334",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784861012334",
+            summary: "おおきなさかなから、ぼうしをぬすんだちいさなさかな。にげています…、にげていますが…。さて、にげきれるでしょうか！？名作『どこいったん』につづく、ちょっとドキッとするおはなし。絵本作家・長谷川義史の大阪弁翻訳絵本。"
+        }, {
+            ndc: "E-ク",
+            title: "はなをくんくん",
+            author: "ルース・クラウス∥文、マーク・シーモント∥絵、きじまはじめ∥訳",
+            publisher: "福音館書店",
+            year: "1967.3",
+            isbn: "4834000958",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4834000958",
+            summary: "雪深い森の中、冬眠から突然さめ、はなをくんくんさせて駆けていく動物たち。やわらかいタッチの美しい絵と詩のような文で、自然の摂理と喜びを無理なく子どもに語りかける名作。"
+        }, {
+            ndc: "E-クﾞ",
+            title: "こびとのくつや",
+            author: "グリム∥原作、グリム∥原作、いもとようこ∥文・絵",
+            publisher: "金の星社",
+            year: "2006.10",
+            isbn: "432303606X",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-432303606X",
+            summary: "まずしいくつやに、ふしぎなことがおこります。あさおきてみると、くつはできあがっているのです。だれがつくったのでしょう。みごとなできばえです。グリム童話の代表的なお話です。"
+        }, {
+            ndc: "E-ケ",
+            title: "きもち",
+            author: "ジャナン・ケイン∥作、いしいむつみ∥訳",
+            publisher: "少年写真新聞社",
+            year: "2013.9",
+            isbn: "9784879814777",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784879814777",
+            summary: "きもちって、やって来ては去ってしまうのね。きもちって、よくわかんないな。ノリノリ、イライラ、うれしい、かなしい―でも、それはみんな、わたしのきもち！この素晴らしい、感情の“言葉の本”といっしょに、子どもたちと関わってください。本書は、子どもたちの内なる世界を生き生きと表現した本として、すべての子どもたちの本棚に置きたい一冊です。"
+        }, {
+            ndc: "E-コ",
+            title: "ゆめぎんこう",
+            author: "コンドウアキ∥著",
+            publisher: "白泉社",
+            year: "2020.10",
+            isbn: "9784592762751",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784592762751",
+            summary: "「いらっしゃいませ、ゆめぎんこうです。おきゃくさまは、どんなゆめをごきぼうですか?」夢のアメを売る不思議なお店を営んでいるのは、こわがりの店主ぺんぺんと、夢を食べるもぐもぐ。ある日、夢を取りに来てほしいという依頼があって…。リラックマの原作者コンドウアキが贈る、優しさあふれる夢の絵本。"
+        }, {
+            ndc: "E-コ",
+            title: "ぜったいにおしちゃダメ？",
+            author: "ビル・コッター∥作",
+            publisher: "サンクチュアリ出版",
+            year: "2017.9",
+            isbn: "9784801400436",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784801400436",
+            summary: "このえほんには１つだけルールがあるよ。それはこのボタンをおしちゃダメということ。このボタンのことをかんがえてもダメ。できるかな？"
+        }, {
+            ndc: "E-サ",
+            title: "はるとあき",
+            author: "斉藤倫∥作、うきまる∥作、吉田尚令∥絵",
+            publisher: "小学館",
+            year: "2019.5",
+            isbn: "9784097268505",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784097268505",
+            summary: "春夏秋冬と季節は巡ります。「私はあきにあったことがない。」そう気づいたはるは、あきに手紙を書くことを思いつきます。そこから始まる、はるとあきの往復書簡。忘れつつある大事なことを、思い出させてくれます。"
+        }, {
+            ndc: "E-サ",
+            title: "１００万回生きたねこ",
+            author: "佐野洋子∥作・絵",
+            publisher: "講談社",
+            year: "1977.10",
+            isbn: "4061272748",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4061272748",
+            summary: "百万回も生きたねこがいた。ねこはそのことが自慢だったが，ある日白い美しいねこと出会い，一回限りの本当の生き方にめざめる。"
+        }, {
+            ndc: "E-サ",
+            title: "よるくま",
+            author: "酒井駒子∥作・絵",
+            publisher: "偕成社",
+            year: "1999.10",
+            isbn: "4033312307",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4033312307",
+            summary: "夜、男の子が寝ていると、まっ黒なよるくまがお母さんをさがしにきました。母の匂い、あたたかさを思い起こさせるファンタジー。"
+        }, {
+            ndc: "E-シ",
+            title: "まないたにりょうりをあげないこと",
+            author: "シゲタサヤカ∥作・絵",
+            publisher: "講談社",
+            year: "2009.8",
+            isbn: "9784061324084",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784061324084",
+            summary: "まな板がしゃべる、食べる! 楽しい絵本「ぼく、このレストランの料理が食べてみたいな‾。」食いしんぼのまな板に、気のやさしいコックはこっそり料理をあげますが、まな板はだんだん太っていって…… 第３０回講談社絵本新人賞佳作受賞作。"
+        }, {
+            ndc: "E-シ",
+            title: "ラッキーカレー",
+            author: "シゲタサヤカ∥作",
+            publisher: "小学館",
+            year: "2022.11",
+            isbn: "9784097252061",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784097252061",
+            summary: "カレーライスにはラッキョウをつけわすれてはいけませんよ。ぜったいにね。どうしてかっていうと…。カレーライスにラッキョウをつけわすれてたいへんなことになったおじさん。"
+        }, {
+            ndc: "E-シ",
+            title: "ぞうのこどもがみたゆめ",
+            author: "志茂田景樹∥作、柴崎るり子∥絵",
+            publisher: "Ｋｉｂａ　Ｂｏｏｋ",
+            year: "2001.2",
+            isbn: "4916158520",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4916158520",
+            summary: "「ぼうや、つよく生きてね」。おかあさんは、わが子をもう一度ふりかえってから、ジャングルの奥へ歩いていった。アフリカ象の母と子のひびきあう愛に、心が洗われます。"
+        }, {
+            ndc: "E-シ",
+            title: "ねつでやすんでいるキミへ",
+            author: "しりあがり寿∥作・絵",
+            publisher: "岩崎書店",
+            year: "2013.4",
+            isbn: "9784265081233",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784265081233",
+            summary: "子どもが熱を出して寝こんだ日。よりそいながら熱い手をにぎって、今まで言えなかったことを話しはじめます。「ごめんね、あまりそばにいられなくて」親の愛がつまった絵本。"
+        }, {
+            ndc: "E-シ",
+            title: "もったいないばあさん",
+            author: "真珠まりこ∥作・絵",
+            publisher: "講談社",
+            year: "2004.10",
+            isbn: "4061323040",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4061323040",
+            summary: "きょうもあのばあさんがやってきた―もったいないことしてないかい？「もったいない」って、どういう意味？ものを大切にする心がそだつ絵本。"
+        }, {
+            ndc: "E-シ",
+            title: "イカになあれ",
+            author: "真珠まりこ∥作",
+            publisher: "講談社",
+            year: "2014.3",
+            isbn: "9784061325661",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784061325661",
+            summary: "みんなでイカに変身して海のなかを楽しくあそぼう。キラキラ光ったり、飛んだり……。よみきかせにぴったりの絵本です。あるところにふしぎな鏡、「イカになあれ」がありました。「イカになあれ」といって、そこをくぐると、みんなイカに変身できてしまうのです。海の底ではイカの王さまに歓迎されて、みんなでイカのように素早く泳いだり、ぷかぷか泳いだり、飛んだりします。あれあれ、ケンカがはじまってしまいました。お互いにスミを吐き合ってまっくろけ。どうしましょう！　珊瑚の中でのかくれんぼでの絵探しもあったり、もりだくさんです"
+        }, {
+            ndc: "E-シ",
+            title: "だめよ、デイビッド！",
+            author: "デイビッド・シャノン∥作、小川仁央∥訳",
+            publisher: "評論社",
+            year: "2001.4",
+            isbn: "4566007103",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4566007103",
+            summary: "どろんこで家に入るし、おふろでは大あばれ、おもちゃはちらかしっぱなし、あげくのはてに大しっぱい。やんちゃなデイビッドのいたずらは、とどまることがない。だからママは、いっつも「だめ、だめ、だめよ！」ってばっかり。いる、いる、こんな子！第7回・日本絵本賞読者賞受賞"
+        }, {
+            ndc: "E-ス",
+            title: "とんでもない",
+            author: "鈴木のりたけ∥作・絵",
+            publisher: "アリス館",
+            year: "2016.2",
+            isbn: "9784752007302",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784752007302",
+            summary: "ぼくってなんのとりえもない、という男の子。鎧のような皮があってサイはいいなぁというと「とんでもない」とサイが答えて…。ウサギやキリンなど、動物たちの告白が始まる。それぞれに悩みがあることを迫力のある絵とユーモアで描く。"
+        }, {
+            ndc: "E-ス",
+            title: "ブラッキンダー",
+            author: "スズキコージ∥作・絵",
+            publisher: "イースト・プレス",
+            year: "2008.8",
+            isbn: "9784872579710",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784872579710",
+            summary: "誰も知らない真夜中の冒険すてきなふねで、しゅっぱつ！しゅっぱつ！"
+        }, {
+            ndc: "E-セ",
+            title: "かいじゅうたちのいるところ",
+            author: "モーリス・センダック∥作、じんぐうてるお∥訳",
+            publisher: "冨山房",
+            year: "1975.12",
+            isbn: "4572002150",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4572002150",
+            summary: "このおとぎばなしは、子どものころオオカミの着ぐるみの中で経験したあの忘れがたい気持ちよりももっと、ワクワクする感じを味わわせてくれる。読み終わった後には、「我が家に勝るものなし」とあらためてうなずかせられるのである。1964年コールデコット賞、1970年には国際アンデルセン賞。"
+        }, {
+            ndc: "E-タ",
+            title: "そらとぶクレヨン",
+            author: "竹下文子∥文、鈴木まもる∥絵",
+            publisher: "金の星社",
+            year: "2006.3",
+            isbn: "432301368X",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-432301368X",
+            summary: "これはクレヨン、せんがかけるよ。ロケットみたいにそらだってとべる。いろんないろ、いろんなかたち、さあ、みんなならなにをかく？すきなものいっぱいかいちゃえ。いっしょにあそぼうよ。"
+        }, {
+            ndc: "E-タ",
+            title: "バナナじけん",
+            author: "高畠那生∥作",
+            publisher: "ＢＬ出版",
+            year: "2012.12",
+            isbn: "9784776405696",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784776405696",
+            summary: "くるまからバナナがひとつおちました。そこへさるがきて、バナナをはっけん。どうするとおもう？もちろん、パクッ！そしてかわをポイッ。すると、そのあと…。みんなで笑える楽しい絵本。"
+        }, {
+            ndc: "E-タ",
+            title: "うそ",
+            author: "谷川俊太郎∥詩、中山信一∥絵",
+            publisher: "主婦の友社",
+            year: "2021.4",
+            isbn: "9784074464708",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784074464708",
+            summary: "いっていることはうそでも、うそをつくきもちはほんとうなんだ。嘘に誠実であるほど、「ぼく」の言葉が深く響く。谷川俊太郎の珠玉の詩が絵本としてよみがえる！"
+        }, {
+            ndc: "E-タ",
+            title: "つみきでとんとん",
+            author: "竹下文子∥文、鈴木まもる∥絵",
+            publisher: "金の星社",
+            year: "2005.1",
+            isbn: "4323013655",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4323013655",
+            summary: "つみきとつみき、ならべてとんとん。やまかな？いえかな？くるまかな？さあ、みんなならなにつくる？"
+        }, {
+            ndc: "E-ツ",
+            title: "しろくまのパンツ",
+            author: "tupera、tupera∥作",
+            publisher: "ブロンズ新社",
+            year: "2012.9",
+            isbn: "9784893095473",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784893095473",
+            summary: "しろくまさんのパンツがなくなっちゃった。いったいどんなパンツかな？"
+        }, {
+            ndc: "E-ツ",
+            title: "はじめてのおつかい",
+            author: "筒井頼子∥作、林明子∥絵",
+            publisher: "福音館書店",
+            year: "2012.4",
+            isbn: "9784834005257",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784834005257",
+            summary: "みいちゃんはママに頼まれて牛乳を買いに出かけます。自転車にベルを鳴らされてどきんとしたり、坂道で転んでしまったり、ひとりで歩く道は緊張の連続です。坂をあがると、お店につきました。お店にはだれもいません。みいちゃんは深呼吸をして、「ぎゅうにゅうください」と言いました。でも、小さな声しかでません。お店の人は、小さいみいちゃんには気がつかないみたい……"
+        }, {
+            ndc: "E-ト",
+            title: "モカとつくるホットチョコレート",
+            author: "刀根里衣∥著",
+            publisher: "ＮＨＫ出版",
+            year: "2022.11",
+            isbn: "9784140361474",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784140361474",
+            summary: "ボローニャ国際絵本原画展入選作で描かれた小さなうさぎ。じつはマシュマロでできている。バルでバリスタとして働くモカは、愛情たっぷりのコーヒーでみんなをハッピーにすることが生きがい。そんなモカは、『Cookies for you マローネとつくるクッキー』の主人公、茶色いうさぎ“マローネ”のボーイフレンド。"
+        }, {
+            ndc: "E-ト",
+            title: "おおきなかぶ ロシア民話",
+            author: "Ａ．トルストイ∥再話、内田莉莎子∥訳、佐藤忠良∥画",
+            publisher: "福音館書店",
+            year: "1995",
+            isbn: "4834000621",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4834000621",
+            summary: "大きなかぶをみんなで力を合わせて抜くという単純な物語の中に、大らかさ、力強さ、ユーモアなどが満ちあふれ、ロシア民話の楽しさを味わわせてくれます。"
+        }, {
+            ndc: "E-ナ",
+            title: "りんごがたべたいねずみくん",
+            author: "なかえよしを∥作、上野紀子∥絵",
+            publisher: "ポプラ社",
+            year: "1999.9",
+            isbn: "4591004732",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4591004732",
+            summary: "木になった赤いリンゴ。でも、ねずみくんには木が高すぎてとれません。トリくん、とんできて一つとり、サルくん、のぼって一つとり…。"
+        }, {
+            ndc: "E-ナ",
+            title: "ねみちゃんとねずみくん",
+            author: "なかえよしを∥作、上野紀子∥絵",
+            publisher: "ポプラ社",
+            year: "1976.11",
+            isbn: "4591004902",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4591004902",
+            summary: "ねみちゃんがあんでるの、ぼくのチョッキかな。きっとぼくにプレゼントしてくれるんだ…。ねずみくんの夢は大きく広がります。"
+        }, {
+            ndc: "E-ナ",
+            title: "ねずみくんのプレゼント",
+            author: "なかえよしを∥作、上野紀子∥絵",
+            publisher: "ポプラ社",
+            year: "2004.7",
+            isbn: "4591081877",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4591081877",
+            summary: "ねみちゃんのたんじょうびにねずみくんはおおきなふうせんをプレゼントしました。そのおおきさはねずみくんのきもち。ところが、ふうせんはだんだんしぼんでいき……"
+        }, {
+            ndc: "E-ナ",
+            title: "どうしちゃったの？ねずみくん",
+            author: "なかえよしを∥作、上野紀子∥絵",
+            publisher: "ポプラ社",
+            year: "2010.5",
+            isbn: "9784591117934",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784591117934",
+            summary: "ねずみくんにげんきがありません。しんぱいしたなかまは、とくいのきょくげいでねずみくんをわらわせようとしますが……"
+        }, {
+            ndc: "E-ナ",
+            title: "ドングリトプスとマックロサウルス",
+            author: "中川淳∥作、",
+            publisher: "水声社",
+            year: "2012.6",
+            isbn: "9784891769116",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784891769116",
+            summary: "子どもの自由な想像力から生まれた世界を描いた絵本です。物語を通して、「コラージュ」と「フロッタージュ（こすり出し）」という美術技法が自然に紹介されており、読書と同時に創作活動（図工）への興味も育めるよう工夫されています。"
+        }, {
+            ndc: "E-ナ",
+            title: "はなちゃんおふろ",
+            author: "中川ひろたか∥文、長新太∥絵",
+            publisher: "主婦の友社",
+            year: "2015.6",
+            isbn: "9784074114603",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784074114603",
+            summary: "おとうさんとおふろにはいるとすごーくたのしい。おふろおふろザッブーン。没後１０年待望の復刊！長新太さんからのさいごのおくりもの。"
+        }, {
+            ndc: "E-ナ",
+            title: "おたすけこびと",
+            author: "なかがわちひろ∥文、コヨセジュンジ∥絵",
+            publisher: "徳間書店",
+            year: "2007.2",
+            isbn: "9784198622961",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784198622961",
+            summary: "男の子とおかあさんとおとうさんがおでかけしているあいだに、キッチンにこびとたちがやってきました。ショベルカーやクレーン車、ブルドーザーやミキサー車、はたらくくるまをたくさんつかって、こびとたちがつくったものは…？画面のすみずみまで楽しめる、楽しさいっぱいの絵本です。"
+        }, {
+            ndc: "E-ナ",
+            title: "ぐりとぐらのかいすいよく",
+            author: "中川李枝子∥作、山脇百合子∥絵",
+            publisher: "福音館書店",
+            year: "2012.7",
+            isbn: "9784834005288",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784834005288",
+            summary: "野ねずみのぐりとぐらは、浜辺であきびんを見つけました。中から出てきたのは地図と浮き袋、それに海ぼうずからの手紙！　ぐりとぐらの海での大冒険物語。"
+        }, {
+            ndc: "E-ナ",
+            title: "どんなかんじかなあ",
+            author: "中山千夏∥ぶん、和田誠∥絵",
+            publisher: "自由国民社",
+            year: "2005.7",
+            isbn: "4426875064",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4426875064",
+            summary: "ともだちのまりちゃんはめがみえない。それでかんがえたんだ。みえないってどんなかんじかなあって。"
+        }, {
+            ndc: "E-ナ",
+            title: "ぐりとぐら",
+            author: "中川李枝子∥作、大村百合子∥絵",
+            publisher: "福音館書店",
+            year: "2007.4",
+            isbn: "9784834000825",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784834000825",
+            summary: "野ねずみのぐりとぐらは、森で大きな卵を見つけました。お料理するのが大好きなぐりとぐらは、さっそく大きなカステラをつくりました。残った卵のからで何をつくったでしょう？"
+        }, {
+            ndc: "E-ナ",
+            title: "ねずみくんのチョッキ",
+            author: "なかえよしを∥作、上野紀子∥絵",
+            publisher: "ポプラ社",
+            year: "2000.2",
+            isbn: "4591004651",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4591004651",
+            summary: "おかあさんがあんでくれた、かわいいチョッキ。“ちょっときせてよ”と動物のなかまが次から次へ。どんどんチョッキがのびちゃうよ！子どもから大人まで愛される、ユーモアとやさしさあふれるロングセラーです。"
+        }, {
+            ndc: "E-ハ",
+            title: "じゃがいもポテトくん",
+            author: "長谷川義史∥作・絵、",
+            publisher: "小学館",
+            year: "2010.7",
+            isbn: "9784097264217",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784097264217",
+            summary: "じゃがじゃがじゃがじゃがおじゃがじゃが。やおやさんのね。じゃがいもくんたちはね。きたのくにからきたかぞくだよ。つぎつぎにいろいろなうちにかわれていって、み～んなはなればなれになっちゃった…。じゃがじゃがじゃがじゃがポテトフライ！じゃがじゃがじゃがじゃがポテトサラダ！おいしいおかずにへんしんだ！おじゃがじゃがじゃが―テーマソングのあるおはなし絵本。"
+        }, {
+            ndc: "E-ハ",
+            title: "ぼくがラーメンたべてるとき",
+            author: "長谷川義史∥作・絵、",
+            publisher: "教育画劇",
+            year: "2007.7",
+            isbn: "9784774610573",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784774610573",
+            summary: "ぼくがラーメンたべてるとき、となりでミケがあくびした。となりでミケがあくびしたとき…とおくとおくはなれたくにでいまなにがおこっているのだろう？おなじこのそらのしたで。"
+        }, {
+            ndc: "E-ハ",
+            title: "うきわねこ",
+            author: "蜂飼耳∥ぶん、牧野千穂∥絵",
+            publisher: "ブロンズ新社",
+            year: "2011.7",
+            isbn: "9784893095237",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784893095237",
+            summary: "誕生日のプレゼントでもらったうきわは空をとぶ不思議なうきわでした。まんげつの夜の忘れられない出来事。"
+        }, {
+            ndc: "E-ハ",
+            title: "こんとあき",
+            author: "林明子∥作、",
+            publisher: "福音館書店",
+            year: "1989.6",
+            isbn: "4834008304",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4834008304",
+            summary: "こんは、おばあちゃんが作ったキツネのぬいぐるみ。ある日なかよしのあきとふたりで、おばあちゃんに会いに行くことになりましたが……"
+        }, {
+            ndc: "E-ハ",
+            title: "いいからいいから",
+            author: "長谷川義史∥作",
+            publisher: "絵本館",
+            year: "2006.10",
+            isbn: "4871101614",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4871101614",
+            summary: "あるひのゆうがた。かみなりがゴロゴロなった。ぴかっとひかって、ドーンといった。きがつくと、めのまえにかみなりのおやこがすわってた。おじいちゃんがいった。「いいから、いいから。せっかくきてくださったんじゃ。ゆっくりしてください」ぼくもいった。「ごゆっくり、ごゆっくり」―「いいから　いいから」このおじいちゃんのおおらかさ。肩のちからがぬけていきます。"
+        }, {
+            ndc: "E-ヒ",
+            title: "くろねこかあさん",
+            author: "東君平∥作",
+            publisher: "福音館書店",
+            year: "1990.1",
+            isbn: "483401018X",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-483401018X",
+            summary: "６匹の子どもを育てる黒猫かあさんは大奮闘。その様子を白と黒の色の対比を生かした切り絵の手法で展開した絵本です。リズミカルな言葉がいっそう楽しさをふくらませてくれます。"
+        }, {
+            ndc: "E-ヒﾞ",
+            title: "ねずみさんちのはじめてのクリスマス",
+            author: "キャラリン・ビーナー∥文、マーク・ビーナー∥絵、まえざわあきえ∥訳",
+            publisher: "徳間書店",
+            year: "2018.11",
+            isbn: "9784198647308",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784198647308",
+            summary: "ゆかしたにクリスマスがやってきた！ねずみの家族の目線からクリスマスを描いた、可愛らしく絵本。プレゼントに最適！寒い寒い冬に、父さんねずみと母さんねずみと17匹の子ねずみたちが、ゆか下のあたたかいへやに引越してきました。ある晩、父さんねずみと母さんねずみは、たくさんのひとたちが上の家にあつまって、歌ったり、踊ったり、プレゼントをわたしたりと楽しそうにしているのを見ました。どうして今晩はいつもとちがうのだろうと気になった2匹は？"
+        }, {
+            ndc: "E-フ",
+            title: "ボールのまじゅつしウィリー",
+            author: "アンソニー・ブラウン∥作、久山太市∥訳",
+            publisher: "評論社",
+            year: "1998.1",
+            isbn: "4566003892",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4566003892",
+            summary: "ウィリーはサッカーが大すき。でも選手に選ばれたことがない。ある日ふしぎな少年が、サッカーシューズをくれた。それはまほうのくつだった！　そしてとうとう選手に選ばれる。けれど試合の日、ウィリーは…"
+        }, {
+            ndc: "E-フ",
+            title: "しずかに！ここはどうぶつのとしょかんです",
+            author: "ドン・フリーマン∥作、なかがわちひろ∥訳",
+            publisher: "ＢＬ出版",
+            year: "2008.4",
+            isbn: "9784776402862",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784776402862",
+            summary: "「どうぶつたちも、ほんをよみたいかもしれないな」としょかんがだいすきなカリーナがカウンターにすわると、どうでしょう！いちばんのりのカナリアにつづいて、ライオン、くま、ぞう、くじゃく、かめ…どうぶつたちが、ぞくぞくはいってきました。としょかんは、まるでどうぶつえんのようです。クラシックであたたかい―親子でわけあいたい、ドン・フリーマンの世界。"
+        }, {
+            ndc: "E-フﾞ",
+            title: "うさこちゃんときゃらめる",
+            author: "ディック・ブルーナ∥ぶん・え、まつおかきょうこ∥訳",
+            publisher: "福音館書店",
+            year: "2009.4",
+            isbn: "9784834024364",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784834024364",
+            summary: "うさこちゃんは、おかあさんと一緒にクッキーを買いに行きました。お母さんがクッキーを買っている間に、うさこちゃんはお店の中をうろうろして、キャラメルを見つけます。ほしいなあと、うこちゃんは思いました。そして、それをこっそりポケットにいれてしまったのです!"
+        }, {
+            ndc: "E-フﾞ",
+            title: "うさこちゃんのてがみ",
+            author: "ディック・ブルーナ∥ぶん・え、まつおかきょうこ∥訳",
+            publisher: "福音館書店",
+            year: "2009.4",
+            isbn: "9784834024357",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784834024357",
+            summary: "うさこちゃんは、サマーキャンプに行きました。「おとうさんとおかあさんへ」で始まる手紙は、キャンプの楽しさにあふれています。うさこちゃんは、お父さん・お母さんと離れても大丈夫なのです。お友だちと、キャンプの暮らしをしっかり楽しんでいます。そして、それをちゃんと手紙に書けました。うさこちゃんも、ちょっと大きくなりましたね。"
+        }, {
+            ndc: "E-フﾞ",
+            title: "ようちえん",
+            author: "ディック・ブルーナ∥ぶんえ、いしいももこ∥訳",
+            publisher: "福音館書店",
+            year: "2010.4",
+            isbn: "9784834001723",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784834001723",
+            summary: "あかくて、あおくて、きいろくて、とてもきれいなようちえん。さあ、とても楽しい１日がはじまりますよ…。"
+        }, {
+            ndc: "E-ヘﾞ",
+            title: "ちいさなちいさなおばあちゃん",
+            author: "エルサ・ベスコフ∥作、いしいとしこ∥訳",
+            publisher: "偕成社",
+            year: "2001.9",
+            isbn: "4033285105",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4033285105",
+            summary: "さなお婆ちゃんが子猫にミルクを飲まれてしまうという伝承話の絵本。スウェーデンの絵本作家エルサ・ベスコフのデビュー作で、百年以上も子どもたちに愛されてきた古典的な作品です"
+        }, {
+            ndc: "E-マ",
+            title: "ラチとらいおん",
+            author: "マレーク・ベロニカ∥ぶん・え、とくながやすもと∥訳",
+            publisher: "福音館書店",
+            year: "1965.7",
+            isbn: "4834000451",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4834000451",
+            summary: "いつも弱虫のラチが、マスコットライオンの助けをかりて勇敢な子どもになっていくようすを描いたこの絵本は、世界中の子どもたちに広く愛されています。"
+        }, {
+            ndc: "E-マ",
+            title: "たったひとつのねがいごと",
+            author: "バーバラ・マクリントック∥作、福本友美子∥訳",
+            publisher: "ほるぷ出版",
+            year: "2011.11",
+            isbn: "9784593505340",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784593505340",
+            summary: "ある日、モリーがいちばへかいものにいくと、ふしぎなおばあさんとであいました。こんばんモリーは、ひとつだけねがいがかなうまほうのさかなのほねを手にするというのです。さて、モリーのねがいごととは…。英国の作家チャールズ・ディケンズのお話にヒントを得て、人気絵本作家が丁寧にえがいた、心あたたまる絵本。"
+        }, {
+            ndc: "E-ミ",
+            title: "もりはいいところ",
+            author: "三木卓∥文、ディアーナ・カイヤカ∥絵",
+            publisher: "写真文化首都北海道「写真の町」東川町",
+            year: "2014.3",
+            isbn: "9784774006222",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784774006222",
+            summary: "ラトビアの民話を日本語・英語・ラトビア語の3か国語で紹介した絵本。温かみのある挿絵が印象的で、見慣れない文字が並ぶページをめくるだけで異国への好奇心が自然と湧いてきます。鎌倉と北海道東川町、ラトビアをつなぐ国際交流から誕生した一冊で、文化の違いを越えて共通するものの大切さを感じさせてくれます。"
+        }, {
+            ndc: "E-ミ",
+            title: "きみはほんとうにステキだね",
+            author: "宮西達也∥作・絵",
+            publisher: "ポプラ社",
+            year: "2004.9",
+            isbn: "4591082407",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4591082407",
+            summary: "むかしむかし、おおむかし。あばれんぼうでいじわるでずるくてじぶんかってなきょうりゅうがいました。それは…..."
+        }, {
+            ndc: "E-ミ",
+            title: "いちばんあいされてるのはぼく",
+            author: "宮西達也∥作・絵",
+            publisher: "ポプラ社",
+            year: "2010.9",
+            isbn: "9784591120422",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784591120422",
+            summary: "むかしむかしおおむかし、ティラノサウルスがひろったたまごから、ごひきのアンキロサウルスのあかちゃんがうまれました。ちいさなあかちゃんたちをみて、ティラノサウルスは…..."
+        }, {
+            ndc: "E-ム",
+            title: "きらきらは・は・歯",
+            author: "室井滋∥文、長谷川義史∥絵",
+            publisher: "世界文化社",
+            year: "2014.10",
+            isbn: "9784418148141",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784418148141",
+            summary: "歯が汚くて、嫌なことばかりがおきる、ヨシオの家族。お隣に住むケント君一家は、みんなきらきらの歯で幸せそう。ある日、ヨシオの歯が急に痛み出し、ケント君のパパがステキな歯医者さんに連れていってくれます。虫歯予防の大切さがわかる、幼児期に読んでおきたい１冊です。"
+        }, {
+            ndc: "E-ヨ",
+            title: "でこぼこホットケーキ",
+            author: "よしだあつこ∥作、川副真佑実∥絵",
+            publisher: "世界文化社",
+            year: "2019.2",
+            isbn: "9784418198023",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784418198023",
+            summary: "ププとポポがおばあちゃんのたんじょうびにつくったホットケーキ。でも、どんどんちいさくなって…。なにがおきたのでしょう？"
+        }, {
+            ndc: "E-ラ",
+            title: "てぶくろ（ウクライナ民話）",
+            author: "エウゲーニー・Ｍ・ラチョフ∥絵、うちだりさこ∥訳",
+            publisher: "福音館書店",
+            year: "1965.11",
+            isbn: "4834000508",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4834000508",
+            summary: "雪の上に落ちていた手袋にネズミが住みこみました。そこへ、カエルやウサギやキツネが次つぎやってきて､とうとう手袋ははじけそう…..."
+        }, {
+            ndc: "E-リ",
+            title: "コウモリとしょかんへいく",
+            author: "ブライアン・リーズ∥作・絵、さいごうようこ∥訳",
+            publisher: "徳間書店",
+            year: "2011.8",
+            isbn: "9784198632397",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784198632397",
+            summary: "すずしい風がふく晩のこと、「今夜はまどがあいてるよ！」という知らせに、コウモリたちは大よろこび。みんなでとんでいったのは…図書館です！なんども図書館にきたことのあるおとなは、お気に入りの「ごちそうの本」にむちゅう。さわいであそんでいた子どもたちも、おはなしの時間がはじまると、すっかりひきこまれて…..."
+        }, {
+            ndc: "E-ル",
+            title: "いっしょならもっといい",
+            author: "ルイス・スロボドキン∥作、木坂涼∥訳",
+            publisher: "偕成社",
+            year: "2011.2",
+            isbn: "9784033482200",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784033482200",
+            summary: "ひとりでもたのしいことたくさんあるよ。でもね、だれかといっしょならもっとおもしろいことできるかも…..."
+        }, {
+            ndc: "E-レ",
+            title: "あおくんときいろちゃん",
+            author: "レオ・レオーニ∥作、藤田圭雄∥訳",
+            publisher: "至光社",
+            year: "1979",
+            isbn: "4783400008",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-4783400008",
+            summary: "絵の具で描かれた青や黄色のまるが生き生きと動きまわり、絵本ならではの夢と感動をもたらしてくれる。作者が孫のために作ったという人間愛あふれる絵本。"
+        }, {
+            ndc: "E-レ",
+            title: "ひとまねこざるときいろいぼうし",
+            author: "エッチ・エイ・レイ∥文・絵、光吉夏弥∥訳",
+            publisher: "岩波書店",
+            year: "1973",
+            isbn: "9784001151473",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784001151473",
+            summary: "ジャングルに住んでいたこざるのジョージは，ある日，黄色いぼうしのおじさんといっしょに船に乗って，アメリカに来ました．何もかも初めてのことばかりで，ジョージは好奇心でいっぱいです．"
+        }, {
+            ndc: "E-レ",
+            title: "ろけっとこざる",
+            author: "エッチ・エイ・レイ∥文・絵、光吉夏弥∥訳",
+            publisher: "岩波書店",
+            year: "1973",
+            isbn: "9784001151480",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784001151480",
+            summary: "いろいろないたずらをしたあげく，博物館ににげこんだこざるのジョージは，館長さんにたのまれて，実験用の宇宙ロケットにのりこみます。無事地上にもどったジョージは，名誉あるメダルを贈られました。"
+        }, {
+            ndc: "E-レ",
+            title: "たこをあげるひとまねこざる",
+            author: "マーガレット・レイ∥文、エッチ・エイ・レイ∥絵、光吉夏弥∥訳",
+            publisher: "岩波書店",
+            year: "1973",
+            isbn: "9784001151497",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784001151497",
+            summary: "ある日，ひとりでるす番をしていたジョージは，窓からウサギ小屋を見つけ，すぐ外に出ていきました．子ウサギとかくれんぼしたり，釣りをして池に落ちたり…そして今度は，たこあげに挑戦します。"
+        }, {
+            ndc: "E-レ",
+            title: "スイミー",
+            author: "レオ＝レオニ∥作、谷川俊太郎∥訳",
+            publisher: "好学社",
+            year: "2010.11",
+            isbn: "9784769020011",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784769020011",
+            summary: "小さな黒い魚スイミーは、兄弟みんなが大きな魚にのまれ、ひとりぼっちに。海を旅して出会った仲間と大きな魚に立ち向かいます。"
+        }, {
+            ndc: "E-レ",
+            title: "英語でもよめるスイミー",
+            author: "レオ＝レオニ∥作、谷川俊太郎∥訳",
+            publisher: "好学社",
+            year: "2013.6",
+            isbn: "9784769020288",
+            url: "https://www.kinokuniya.co.jp/f/dsg-01-9784769020288",
+            summary: "小さな黒い魚スイミーは、兄弟みんなが大きな魚にのまれ、ひとりぼっちに。海を旅して出会った仲間と大きな魚に立ち向かいます。"
+        }];
 
         // --- データ結合とカード生成 ---
         const bookGrid = document.getElementById('book-grid');
 
         const formatYearMonth = (year) => {
+            // エラーの原因となっていた全角の感嘆符「！」を半角の「!」に修正
             if (typeof year !== 'number' && typeof year !== 'string') return '';
             const yearStr = String(year);
             if (yearStr.includes('.')) {
                 const parts = yearStr.split('.');
-                const month = parseInt(parts[1], 10) || parseInt(parts[1].substring(0,1), 10);
+                const month = parseInt(parts[1], 10) || parseInt(parts[1].substring(0, 1), 10);
                 if (month === 0) return `${parts[0]}年`;
                 return `${parts[0]}年${month}月`;
             }
@@ -409,9 +1073,11 @@
         allBookData.forEach(book => {
             const card = document.createElement('div');
             card.className = 'book-card';
+            // エラーの原因となっていた全角の疑問符「？」を半角の「?」に修正
+            const link = book.url ? `<a href="${book.url}" target="_blank" rel="noopener noreferrer">${book.title}</a>` : book.title;
             card.innerHTML = `
                 <div class="card-header">
-                    <h3>${book.title}</h3>
+                    <h3>${link}</h3>
                     <div class="author">${book.author}</div>
                 </div>
                 <div class="card-body">
@@ -419,7 +1085,7 @@
                 </div>
                 <div class="card-footer">
                     <span>${book.publisher}</span>
-                    <span class="book-id">#${book.id}</span>
+                    <span class="book-ndc">${book.ndc}</span>
                     <span>${formatYearMonth(book.year)}</span>
                 </div>
             `;
